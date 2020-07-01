@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 import com.useorigin.insurance.api.risk.application.in.command.RiskProfileCreationCommand;
 import com.useorigin.insurance.api.risk.domain.House;
 import com.useorigin.insurance.api.risk.domain.OwnershipStatus;
-import com.useorigin.insurance.api.risk.domain.command.MaritalStatus;
+import com.useorigin.insurance.api.risk.domain.MaritalStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

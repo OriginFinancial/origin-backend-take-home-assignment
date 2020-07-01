@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.useorigin.insurance.api.risk.domain.House;
+import com.useorigin.insurance.api.risk.domain.MaritalStatus;
 import com.useorigin.insurance.api.risk.domain.Vehicle;
-import com.useorigin.insurance.api.risk.domain.command.MaritalStatus;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -51,6 +51,34 @@ public class RiskProfileCreationCommand {
         return Arrays.stream(riskQuestions)
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Integer getDependents() {
+        return dependents;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public Integer getIncome() {
+        return income;
+    }
+
+    public MaritalStatus getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public Integer[] getRiskQuestions() {
+        return riskQuestions;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
     public static class Builder {
@@ -100,6 +128,5 @@ public class RiskProfileCreationCommand {
         public RiskProfileCreationCommand build() {
             return new RiskProfileCreationCommand(age, dependents, house, income, maritalStatus, riskQuestions, vehicle);
         }
-
     }
 }
