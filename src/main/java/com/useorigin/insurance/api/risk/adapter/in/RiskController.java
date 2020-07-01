@@ -16,6 +16,8 @@ public class RiskController {
 
     @PostMapping("/insurances/risk")
     private ResponseEntity<RiskProfileResource> risk(@RequestBody @Valid RiskProfileCreationCommand command) {
+
+
         RiskProfileResource riskProfileResource = new RiskProfileResource("regular", "ineligible", "economic", "regular");
         return ResponseEntity.status(CREATED).body(riskProfileResource);
     }

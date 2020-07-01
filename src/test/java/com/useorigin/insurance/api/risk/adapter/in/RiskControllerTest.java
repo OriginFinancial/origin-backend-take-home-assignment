@@ -62,7 +62,7 @@ public class RiskControllerTest {
 
         House house = new House(OwnershipStatus.OWNED);
 
-        boolean[] risks = {false, true, false};
+        Integer[] risks = {0, 1, 0};
 
         return new RiskProfileCreationCommand.Builder()
                 .atAge(35)

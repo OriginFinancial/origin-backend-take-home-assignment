@@ -10,6 +10,7 @@ import com.useorigin.insurance.api.risk.domain.command.MaritalStatus;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
 
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class RiskProfileCreationCommand {
@@ -32,10 +33,11 @@ public class RiskProfileCreationCommand {
     @NotNull
     @JsonProperty(value = "risk_questions")
     @Size(min = 3, max = 3)
-    private final boolean[] riskQuestions;
+    @RiskQuestionValid
+    private final Integer[] riskQuestions;
     private final Vehicle vehicle;
 
-    public RiskProfileCreationCommand(Integer age, Integer dependents, House house, Integer income, MaritalStatus maritalStatus, boolean[] riskQuestions, Vehicle vehicle) {
+    public RiskProfileCreationCommand(Integer age, Integer dependents, House house, Integer income, MaritalStatus maritalStatus, Integer[] riskQuestions, Vehicle vehicle) {
         this.age = age;
         this.dependents = dependents;
         this.house = house;
@@ -45,13 +47,19 @@ public class RiskProfileCreationCommand {
         this.vehicle = vehicle;
     }
 
+    public Integer getRiskScore() {
+        return Arrays.stream(riskQuestions)
+                .mapToInt(Integer::intValue)
+                .sum();
+    }
+
     public static class Builder {
         private Integer age;
         private Integer dependents;
         private House house;
         private Integer income;
         private MaritalStatus maritalStatus;
-        private boolean[] riskQuestions;
+        private Integer[] riskQuestions;
         private Vehicle vehicle;
 
         public Builder atAge(Integer age) {
@@ -79,7 +87,7 @@ public class RiskProfileCreationCommand {
             return this;
         }
 
-        public Builder withRisks(boolean[] riskQuestions) {
+        public Builder withRisks(Integer[] riskQuestions) {
             this.riskQuestions = riskQuestions;
             return this;
         }
