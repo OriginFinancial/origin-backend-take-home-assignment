@@ -1,7 +1,9 @@
 package com.useorigin.insurance.api.risk.domain;
 
 public interface Score {
-    Integer deduct(Integer score);
+    Score deduct(Integer score);
 
-    Integer add(Integer score);
+    Score add(Integer score);
+
+    Integer getScore();
 }

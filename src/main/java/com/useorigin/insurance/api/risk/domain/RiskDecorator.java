@@ -28,4 +28,8 @@ public abstract class RiskDecorator implements Risk {
     public RiskProfileResource createProfile(RiskProfileCreationCommand command) {
         return risk.createProfile(riskProfileResource, command);
     }
+
+    public RiskScore calculateScore(RiskProfileCreationCommand command) {
+        return risk.calculateScore(riskScore, command);
+    }
 }

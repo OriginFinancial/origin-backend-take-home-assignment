@@ -9,12 +9,19 @@ public class ScoreAuto implements Score {
     }
 
     @Override
-    public Integer deduct(Integer score) {
-        return this.score - score;
+    public ScoreAuto deduct(Integer score) {
+        return new ScoreAuto(this.score - score);
     }
 
     @Override
-    public Integer add(Integer score) {
-        return this.score + score;
+    public ScoreAuto add(Integer score) {
+        return new ScoreAuto(this.score + score);
     }
+
+    @Override
+    public Integer getScore() {
+        return score;
+    }
+
+
 }

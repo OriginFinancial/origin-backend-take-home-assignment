@@ -4,7 +4,7 @@ import com.useorigin.insurance.api.risk.application.in.command.RiskProfileCreati
 import com.useorigin.insurance.api.risk.infrastructure.web.out.RiskProfileResource;
 
 public interface Risk {
-    RiskScore calculateScore(RiskProfileCreationCommand command);
+    RiskScore calculateScore(RiskScore riskScore, RiskProfileCreationCommand command);
 
     RiskProfileResource createProfile(RiskProfileResource profile, RiskProfileCreationCommand command);
 }

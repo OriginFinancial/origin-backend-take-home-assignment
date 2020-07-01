@@ -9,14 +9,13 @@ import com.useorigin.insurance.api.risk.infrastructure.web.out.RiskProfileResour
 
 public class RiskScoreIneligible extends RiskDecorator {
 
-
     public RiskScoreIneligible(Risk risk) {
         super(risk);
     }
 
     @Override
-    public RiskScore calculateScore(RiskProfileCreationCommand command) {
-        return null;
+    public RiskScore calculateScore(RiskScore score, RiskProfileCreationCommand command) {
+        return risk.calculateScore(score, command);
     }
 
     @Override

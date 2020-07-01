@@ -7,6 +7,9 @@ public class RiskScore {
     private ScoreHome scoreHome;
     private ScoreLife scoreLife;
 
+    public RiskScore() {
+    }
+
     public RiskScore(ScoreAuto scoreAuto, ScoreDisability scoreDisability, ScoreHome scoreHome, ScoreLife scoreLife) {
         this.scoreAuto = scoreAuto;
         this.scoreDisability = scoreDisability;
