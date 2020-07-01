@@ -1,8 +1,15 @@
 package com.useorigin.insurance.api.risk.domain;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class House {
 
-    private final OwnershipStatus ownershipStatus;
+    private OwnershipStatus ownershipStatus;
+
+    public House() {
+    }
 
     public House(OwnershipStatus ownershipStatus) {
         this.ownershipStatus = ownershipStatus;
