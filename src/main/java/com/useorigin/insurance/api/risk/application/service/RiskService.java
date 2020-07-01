@@ -1,22 +1,21 @@
 package com.useorigin.insurance.api.risk.application.service;
 
 import com.useorigin.insurance.api.risk.application.in.command.RiskProfileCreationCommand;
-import com.useorigin.insurance.api.risk.domain.Score;
+import com.useorigin.insurance.api.risk.domain.RiskDecorator;
 import com.useorigin.insurance.api.risk.infrastructure.web.out.RiskProfileResource;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RiskService implements RiskProfileUseCase {
-
-    private RiskProfileResource riskProfileResource;
+public class RiskService {
 
     public RiskProfileResource calculate(RiskProfileCreationCommand command) {
 
         Integer score = command.getRiskScore();
 
-        if (command.getIncome() == 0 && (command.getHouse() == null || command.getHouse() == null))
-            riskProfileResource = new RiskProfileResource(Score.INELIGIBLE, Score.INELIGIBLE, Score.INELIGIBLE, Score.INELIGIBLE);
+        RiskProfileResource profile = new RiskProfileResource();
+        RiskDecorator risk = new RiskScoreIneligible(new RiskOver60());
 
-        return riskProfileResource;
+        return risk.createProfile(profile, command);
+
     }
 }

@@ -1,5 +1,7 @@
 package com.useorigin.insurance.api.risk.domain;
 
-public enum Score {
-    ECONOMIC, REGULAR, RESPONSIBLE, INELIGIBLE
+public interface Score {
+    Integer deduct(Integer score);
+
+    Integer add(Integer score);
 }
