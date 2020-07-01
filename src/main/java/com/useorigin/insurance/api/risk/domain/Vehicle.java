@@ -6,7 +6,7 @@ import java.time.Year;
 
 public class Vehicle {
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT, pattern = "yyyy")
     private Year year;
 
     public Vehicle() {
