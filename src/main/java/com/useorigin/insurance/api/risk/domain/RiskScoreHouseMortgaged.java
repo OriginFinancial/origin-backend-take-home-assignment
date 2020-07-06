@@ -1,6 +1,8 @@
 package com.useorigin.insurance.api.risk.domain;
 
 import com.useorigin.insurance.api.risk.application.in.command.RiskProfileCreationCommand;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 public class RiskScoreHouseMortgaged extends RiskDecorator {
 
@@ -15,7 +17,7 @@ public class RiskScoreHouseMortgaged extends RiskDecorator {
     @Override
     public RiskScore createRiskScore(RiskProfileCreationCommand command) {
         if (command.getHouse() != null)
-            if (OwnershipStatus.valueOf(command.getHouse().getOwnershipStatus()).equals(OwnershipStatus.MORTGAGED))
+            if (ownershipStatusFrom(command.getHouse().getOwnershipStatus()).equals(OwnershipStatus.MORTGAGED))
                 return updateRiskScore(risk.createRiskScore(command));
 
         return risk.createRiskScore(command);
@@ -27,5 +29,13 @@ public class RiskScoreHouseMortgaged extends RiskDecorator {
                 riskScore.getScoreDisability().add(HOUSE_MORTGAGED_RISK_ADDITION),
                 riskScore.getScoreHome().add(HOUSE_MORTGAGED_RISK_ADDITION),
                 riskScore.getScoreLife());
+    }
+
+    private OwnershipStatus ownershipStatusFrom(String status) {
+        try {
+            return OwnershipStatus.valueOf(status.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, status + " OwnershipStatus not supported");
+        }
     }
 }

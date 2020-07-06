@@ -71,7 +71,7 @@ public class RiskProfileCreationCommand {
     }
 
     public String getMaritalStatus() {
-        return maritalStatus.toUpperCase();
+        return maritalStatus;
     }
 
     public Integer[] getRiskQuestions() {
@@ -130,4 +130,6 @@ public class RiskProfileCreationCommand {
             return new RiskProfileCreationCommand(age, dependents, house, income, maritalStatus, riskQuestions, vehicle);
         }
     }
+
+
 }
