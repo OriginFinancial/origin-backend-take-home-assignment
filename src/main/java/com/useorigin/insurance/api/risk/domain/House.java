@@ -6,13 +6,16 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class House {
 
-    private OwnershipStatus ownershipStatus;
+    private String ownershipStatus;
 
-    public House(OwnershipStatus ownershipStatus) {
+    public House() {
+    }
+
+    public House(String ownershipStatus) {
         this.ownershipStatus = ownershipStatus;
     }
 
-    public OwnershipStatus getOwnershipStatus() {
+    public String getOwnershipStatus() {
         return ownershipStatus;
     }
 

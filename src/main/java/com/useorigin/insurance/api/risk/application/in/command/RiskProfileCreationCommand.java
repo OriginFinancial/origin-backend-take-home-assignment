@@ -28,7 +28,7 @@ public class RiskProfileCreationCommand {
 
     @JsonProperty(value = "marital_status")
     @NotNull
-    private final MaritalStatus maritalStatus;
+    private final String maritalStatus;
 
     @NotNull
     @JsonProperty(value = "risk_questions")
@@ -37,7 +37,7 @@ public class RiskProfileCreationCommand {
     private final Integer[] riskQuestions;
     private final Vehicle vehicle;
 
-    public RiskProfileCreationCommand(Integer age, Integer dependents, House house, Integer income, MaritalStatus maritalStatus, Integer[] riskQuestions, Vehicle vehicle) {
+    public RiskProfileCreationCommand(Integer age, Integer dependents, House house, Integer income, String maritalStatus, Integer[] riskQuestions, Vehicle vehicle) {
         this.age = age;
         this.dependents = dependents;
         this.house = house;
@@ -69,7 +69,7 @@ public class RiskProfileCreationCommand {
         return income;
     }
 
-    public MaritalStatus getMaritalStatus() {
+    public String getMaritalStatus() {
         return maritalStatus;
     }
 
@@ -86,7 +86,7 @@ public class RiskProfileCreationCommand {
         private Integer dependents;
         private House house;
         private Integer income;
-        private MaritalStatus maritalStatus;
+        private String maritalStatus;
         private Integer[] riskQuestions;
         private Vehicle vehicle;
 
@@ -110,7 +110,7 @@ public class RiskProfileCreationCommand {
             return this;
         }
 
-        public Builder withMaritalStatus(MaritalStatus maritalStatus) {
+        public Builder withMaritalStatus(String maritalStatus) {
             this.maritalStatus = maritalStatus;
             return this;
         }

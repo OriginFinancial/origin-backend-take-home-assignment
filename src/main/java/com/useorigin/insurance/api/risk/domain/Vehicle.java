@@ -6,6 +6,9 @@ public class Vehicle {
 
     private Integer year;
 
+    public Vehicle() {
+    }
+
     public Vehicle(Integer year) {
         this.year = year;
     }

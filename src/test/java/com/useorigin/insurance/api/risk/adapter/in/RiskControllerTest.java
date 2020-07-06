@@ -63,7 +63,7 @@ public class RiskControllerTest {
         Mockito.when(riskProfileService.createProfile(Mockito.any())).thenReturn(mockProfileIneligible);
 
         mockMvc.perform(
-                post("/insurances/risk")
+                post("/insurances/risk/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonfy(command)))
                 .andExpect(status().isCreated())
@@ -78,7 +78,7 @@ public class RiskControllerTest {
         RiskProfileCreationCommand payload = createPayloadWithoutRequiredFields();
 
         mockMvc.perform(
-                post("/insurances/risk")
+                post("/insurances/risk/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonfy(payload)))
                 .andExpect(status().isBadRequest());
