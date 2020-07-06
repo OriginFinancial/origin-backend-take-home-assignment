@@ -1,7 +1,7 @@
 package com.useorigin.insurance.api.risk.adapter.in;
 
 import com.useorigin.insurance.api.risk.application.in.command.RiskProfileCreationCommand;
-import com.useorigin.insurance.api.risk.application.service.RiskService;
+import com.useorigin.insurance.api.risk.application.service.RiskProfileService;
 import com.useorigin.insurance.api.risk.infrastructure.web.out.RiskProfileResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,9 +15,9 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RestController
 public class RiskController {
 
-    private final RiskService service;
+    private final RiskProfileService service;
 
-    public RiskController(RiskService service) {
+    public RiskController(RiskProfileService service) {
         this.service = service;
     }
 

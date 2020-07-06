@@ -4,13 +4,18 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.useorigin.insurance.api.risk.application.in.command.RiskProfileCreationCommand;
-import com.useorigin.insurance.api.risk.domain.House;
-import com.useorigin.insurance.api.risk.domain.OwnershipStatus;
+import com.useorigin.insurance.api.risk.application.service.RiskProfileService;
 import com.useorigin.insurance.api.risk.domain.MaritalStatus;
+import com.useorigin.insurance.api.risk.domain.ScoreType;
+import com.useorigin.insurance.api.risk.domain.service.RiskScoreService;
+import com.useorigin.insurance.api.risk.infrastructure.web.out.RiskProfileResource;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,27 +25,52 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WebMvcTest
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = RiskController.class)
 public class RiskControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
-    void testNothing() throws Exception {
+    @MockBean
+    private RiskScoreService riskScoreService;
 
-        RiskProfileCreationCommand payload = createPayload();
+    @MockBean
+    private RiskProfileService riskProfileService;
+
+
+    private RiskProfileCreationCommand command;
+
+    @BeforeEach
+    void setup() {
+
+        Integer[] risks = {1, 1, 1};
+
+        command = new RiskProfileCreationCommand.Builder()
+                .atAge(100)
+                .withDependents(10)
+                .withIncome(100000)
+                .withMaritalStatus(MaritalStatus.MARRIED)
+                .withRisks(risks)
+                .build();
+
+    }
+
+    @Test
+    void testIneligibleProfile() throws Exception {
+
+        RiskProfileResource mockProfileIneligible = createMockProfileIneligible();
+        Mockito.when(riskProfileService.createProfile(Mockito.any())).thenReturn(mockProfileIneligible);
 
         mockMvc.perform(
                 post("/insurances/risk")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(jsonfy(payload)))
+                        .content(jsonfy(command)))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.auto", is("regular")))
-                .andExpect(jsonPath("$.disability", is("ineligible")))
-                .andExpect(jsonPath("$.home", is("economic")))
-                .andExpect(jsonPath("$.life", is("regular")));
+                .andExpect(jsonPath("$.auto", is("INELIGIBLE")))
+                .andExpect(jsonPath("$.disability", is("INELIGIBLE")))
+                .andExpect(jsonPath("$.home", is("INELIGIBLE")))
+                .andExpect(jsonPath("$.life", is("INELIGIBLE")));
     }
 
     @Test
@@ -58,28 +88,16 @@ public class RiskControllerTest {
         return new RiskProfileCreationCommand.Builder().build();
     }
 
-    private RiskProfileCreationCommand createPayload() {
-
-        House house = new House(OwnershipStatus.OWNED);
-
-        Integer[] risks = {0, 1, 0};
-
-        return new RiskProfileCreationCommand.Builder()
-                .atAge(35)
-                .withDependents(2)
-                .withHouse(house)
-                .withIncome(0)
-                .withMaritalStatus(MaritalStatus.MARRIED)
-                .withRisks(risks)
-                .build();
-    }
-
     private String jsonfy(RiskProfileCreationCommand command) {
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .create();
 
         return gson.toJson(command);
+    }
+
+    private RiskProfileResource createMockProfileIneligible() {
+        return new RiskProfileResource(ScoreType.INELIGIBLE, ScoreType.INELIGIBLE, ScoreType.INELIGIBLE, ScoreType.INELIGIBLE);
     }
 
 }

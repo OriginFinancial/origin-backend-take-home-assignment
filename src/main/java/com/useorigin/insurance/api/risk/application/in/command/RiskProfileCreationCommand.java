@@ -47,7 +47,7 @@ public class RiskProfileCreationCommand {
         this.vehicle = vehicle;
     }
 
-    public Integer getRiskScore() {
+    public Integer getDefaultRiskScore() {
         return Arrays.stream(riskQuestions)
                 .mapToInt(Integer::intValue)
                 .sum();
@@ -120,7 +120,7 @@ public class RiskProfileCreationCommand {
             return this;
         }
 
-        public Builder withCar(Vehicle vehicle) {
+        public Builder withVehicle(Vehicle vehicle) {
             this.vehicle = vehicle;
             return this;
         }
