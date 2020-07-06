@@ -18,7 +18,6 @@ public class RiskDefault implements Risk {
 
     @Override
     public RiskScore updateRiskScore(RiskScore riskScore) {
-        return null;
+        return riskScore;
     }
-
 }

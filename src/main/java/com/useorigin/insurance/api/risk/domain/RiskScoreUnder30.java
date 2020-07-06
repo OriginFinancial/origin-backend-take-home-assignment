@@ -15,6 +15,7 @@ public class RiskScoreUnder30 extends RiskDecorator {
     public RiskScore createRiskScore(RiskProfileCreationCommand command) {
         if (command.getAge() < 30)
             return updateRiskScore(risk.createRiskScore(command));
+
         return risk.createRiskScore(command);
     }
 

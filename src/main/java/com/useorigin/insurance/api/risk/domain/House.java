@@ -8,9 +8,6 @@ public class House {
 
     private OwnershipStatus ownershipStatus;
 
-    public House() {
-    }
-
     public House(OwnershipStatus ownershipStatus) {
         this.ownershipStatus = ownershipStatus;
     }
