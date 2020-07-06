@@ -1,22 +1,16 @@
 package com.useorigin.insurance.api.risk.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.Year;
 
 public class Vehicle {
 
-    @JsonFormat(shape = JsonFormat.Shape.NUMBER_INT, pattern = "yyyy")
-    private Year year;
+    private Integer year;
 
-    public Vehicle() {
-    }
-
-    public Vehicle(Year year) {
+    public Vehicle(Integer year) {
         this.year = year;
     }
 
     public Year getYear() {
-        return year;
+        return Year.of(year);
     }
 }

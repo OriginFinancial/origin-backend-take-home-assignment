@@ -19,7 +19,7 @@ public class ScoreHome implements Score {
     }
 
     @Override
-    public Integer getScore() {
+    public Integer getValue() {
         return score;
     }
 }

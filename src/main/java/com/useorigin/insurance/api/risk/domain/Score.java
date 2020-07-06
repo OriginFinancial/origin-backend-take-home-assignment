@@ -5,5 +5,5 @@ public interface Score {
 
     Score add(Integer score);
 
-    Integer getScore();
+    Integer getValue();
 }

@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import java.time.Year;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RiskScoreServiceTest {
@@ -32,10 +30,10 @@ class RiskScoreServiceTest {
     void shouldReturnDefaultRiskBasedOnRiskQuestions() {
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(3, riskScore.getScoreAuto().getScore());
-        assertEquals(3, riskScore.getScoreDisability().getScore());
-        assertEquals(3, riskScore.getScoreHome().getScore());
-        assertEquals(3, riskScore.getScoreLife().getScore());
+        assertEquals(3, riskScore.getScoreAuto().getValue());
+        assertEquals(3, riskScore.getScoreDisability().getValue());
+        assertEquals(3, riskScore.getScoreHome().getValue());
+        assertEquals(3, riskScore.getScoreLife().getValue());
     }
 
     @Test
@@ -43,10 +41,10 @@ class RiskScoreServiceTest {
         ReflectionTestUtils.setField(command, "age", 20);
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(1, riskScore.getScoreAuto().getScore());
-        assertEquals(1, riskScore.getScoreDisability().getScore());
-        assertEquals(1, riskScore.getScoreHome().getScore());
-        assertEquals(1, riskScore.getScoreLife().getScore());
+        assertEquals(1, riskScore.getScoreAuto().getValue());
+        assertEquals(1, riskScore.getScoreDisability().getValue());
+        assertEquals(1, riskScore.getScoreHome().getValue());
+        assertEquals(1, riskScore.getScoreLife().getValue());
     }
 
     @Test
@@ -54,10 +52,10 @@ class RiskScoreServiceTest {
         ReflectionTestUtils.setField(command, "age", 39);
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(2, riskScore.getScoreAuto().getScore());
-        assertEquals(2, riskScore.getScoreDisability().getScore());
-        assertEquals(2, riskScore.getScoreHome().getScore());
-        assertEquals(2, riskScore.getScoreLife().getScore());
+        assertEquals(2, riskScore.getScoreAuto().getValue());
+        assertEquals(2, riskScore.getScoreDisability().getValue());
+        assertEquals(2, riskScore.getScoreHome().getValue());
+        assertEquals(2, riskScore.getScoreLife().getValue());
     }
 
     @Test
@@ -66,10 +64,10 @@ class RiskScoreServiceTest {
         ReflectionTestUtils.setField(command, "income", 201000);
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(1, riskScore.getScoreAuto().getScore());
-        assertEquals(1, riskScore.getScoreDisability().getScore());
-        assertEquals(1, riskScore.getScoreHome().getScore());
-        assertEquals(1, riskScore.getScoreLife().getScore());
+        assertEquals(1, riskScore.getScoreAuto().getValue());
+        assertEquals(1, riskScore.getScoreDisability().getValue());
+        assertEquals(1, riskScore.getScoreHome().getValue());
+        assertEquals(1, riskScore.getScoreLife().getValue());
     }
 
     @Test
@@ -81,10 +79,10 @@ class RiskScoreServiceTest {
 
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(1, riskScore.getScoreAuto().getScore());
-        assertEquals(2, riskScore.getScoreDisability().getScore());
-        assertEquals(2, riskScore.getScoreHome().getScore());
-        assertEquals(1, riskScore.getScoreLife().getScore());
+        assertEquals(1, riskScore.getScoreAuto().getValue());
+        assertEquals(2, riskScore.getScoreDisability().getValue());
+        assertEquals(2, riskScore.getScoreHome().getValue());
+        assertEquals(1, riskScore.getScoreLife().getValue());
     }
 
     @Test
@@ -97,10 +95,10 @@ class RiskScoreServiceTest {
 
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(1, riskScore.getScoreAuto().getScore());
-        assertEquals(3, riskScore.getScoreDisability().getScore());
-        assertEquals(2, riskScore.getScoreHome().getScore());
-        assertEquals(2, riskScore.getScoreLife().getScore());
+        assertEquals(1, riskScore.getScoreAuto().getValue());
+        assertEquals(3, riskScore.getScoreDisability().getValue());
+        assertEquals(2, riskScore.getScoreHome().getValue());
+        assertEquals(2, riskScore.getScoreLife().getValue());
     }
 
     @Test
@@ -115,16 +113,16 @@ class RiskScoreServiceTest {
 
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(1, riskScore.getScoreAuto().getScore());
-        assertEquals(2, riskScore.getScoreDisability().getScore());
-        assertEquals(2, riskScore.getScoreHome().getScore());
-        assertEquals(3, riskScore.getScoreLife().getScore());
+        assertEquals(1, riskScore.getScoreAuto().getValue());
+        assertEquals(2, riskScore.getScoreDisability().getValue());
+        assertEquals(2, riskScore.getScoreHome().getValue());
+        assertEquals(3, riskScore.getScoreLife().getValue());
     }
 
     @Test
     void shouldAddOneRiskPointToAutoWhenHasAVehicleProducedIn5Years() {
         House house = new House(OwnershipStatus.MORTGAGED);
-        Vehicle vehicle = new Vehicle(Year.of(2019));
+        Vehicle vehicle = new Vehicle(2019);
         ReflectionTestUtils.setField(command, "age", 39);
         ReflectionTestUtils.setField(command, "income", 201000);
         ReflectionTestUtils.setField(command, "house", house);
@@ -135,16 +133,16 @@ class RiskScoreServiceTest {
 
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(2, riskScore.getScoreAuto().getScore());
-        assertEquals(2, riskScore.getScoreDisability().getScore());
-        assertEquals(2, riskScore.getScoreHome().getScore());
-        assertEquals(3, riskScore.getScoreLife().getScore());
+        assertEquals(2, riskScore.getScoreAuto().getValue());
+        assertEquals(2, riskScore.getScoreDisability().getValue());
+        assertEquals(2, riskScore.getScoreHome().getValue());
+        assertEquals(3, riskScore.getScoreLife().getValue());
     }
 
     @Test
     void testInputExample() {
         Integer[] risks = {0, 1, 0};
-        Vehicle vehicle = new Vehicle(Year.of(2018));
+        Vehicle vehicle = new Vehicle(2018);
         House house = new House(OwnershipStatus.OWNED);
 
         ReflectionTestUtils.setField(command, "age", 35);
@@ -158,9 +156,9 @@ class RiskScoreServiceTest {
 
         RiskScore riskScore = service.calculate(command);
 
-        assertEquals(1, riskScore.getScoreAuto().getScore());
-        assertEquals(0, riskScore.getScoreDisability().getScore());
-        assertEquals(0, riskScore.getScoreHome().getScore());
-        assertEquals(2, riskScore.getScoreLife().getScore());
+        assertEquals(1, riskScore.getScoreAuto().getValue());
+        assertEquals(0, riskScore.getScoreDisability().getValue());
+        assertEquals(0, riskScore.getScoreHome().getValue());
+        assertEquals(2, riskScore.getScoreLife().getValue());
     }
 }

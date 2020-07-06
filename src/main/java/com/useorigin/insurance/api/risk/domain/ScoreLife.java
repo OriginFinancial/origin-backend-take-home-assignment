@@ -19,7 +19,7 @@ public class ScoreLife implements Score {
     }
 
     @Override
-    public Integer getScore() {
+    public Integer getValue() {
         return score;
     }
 }
