@@ -16,7 +16,7 @@ public class House {
     }
 
     public String getOwnershipStatus() {
-        return ownershipStatus;
+        return ownershipStatus.toUpperCase();
     }
 
     @Override

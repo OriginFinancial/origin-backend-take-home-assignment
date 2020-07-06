@@ -7,6 +7,6 @@ public class StringToOwnershipStatusConverter implements Converter<String, Owner
 
     @Override
     public OwnershipStatus convert(String source) {
-        return OwnershipStatus.valueOf(source);
+        return OwnershipStatus.valueOf(source.toUpperCase());
     }
 }

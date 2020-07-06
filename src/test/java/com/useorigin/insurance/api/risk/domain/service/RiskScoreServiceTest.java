@@ -21,7 +21,7 @@ class RiskScoreServiceTest {
                 .atAge(100)
                 .withDependents(0)
                 .withIncome(100000)
-                .withMaritalStatus(MaritalStatus.SINGLE)
+                .withMaritalStatus(MaritalStatus.SINGLE.name())
                 .withRisks(risks)
                 .build();
     }
@@ -72,7 +72,7 @@ class RiskScoreServiceTest {
 
     @Test
     void shouldAddOneRiskPointToHomeAndDisabilityWhenHouseIsMortgaged() {
-        House house = new House(OwnershipStatus.MORTGAGED);
+        House house = new House(OwnershipStatus.MORTGAGED.name());
         ReflectionTestUtils.setField(command, "age", 39);
         ReflectionTestUtils.setField(command, "income", 201000);
         ReflectionTestUtils.setField(command, "house", house);
@@ -87,7 +87,7 @@ class RiskScoreServiceTest {
 
     @Test
     void shouldAddOneRiskPointToDisabilityAndLifeWhenHouseHasDependents() {
-        House house = new House(OwnershipStatus.MORTGAGED);
+        House house = new House(OwnershipStatus.MORTGAGED.name());
         ReflectionTestUtils.setField(command, "age", 39);
         ReflectionTestUtils.setField(command, "income", 201000);
         ReflectionTestUtils.setField(command, "house", house);
@@ -103,12 +103,12 @@ class RiskScoreServiceTest {
 
     @Test
     void shouldAddOneRiskPointToLifeAnDeductOneRiskPointToDisabilityWhenIsMarried() {
-        House house = new House(OwnershipStatus.MORTGAGED);
+        House house = new House(OwnershipStatus.MORTGAGED.name());
         ReflectionTestUtils.setField(command, "age", 39);
         ReflectionTestUtils.setField(command, "income", 201000);
         ReflectionTestUtils.setField(command, "house", house);
         ReflectionTestUtils.setField(command, "dependents", 2);
-        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED);
+        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED.name());
 
 
         RiskScore riskScore = service.calculate(command);
@@ -121,13 +121,13 @@ class RiskScoreServiceTest {
 
     @Test
     void shouldAddOneRiskPointToAutoWhenHasAVehicleProducedIn5Years() {
-        House house = new House(OwnershipStatus.MORTGAGED);
+        House house = new House(OwnershipStatus.MORTGAGED.name());
         Vehicle vehicle = new Vehicle(2019);
         ReflectionTestUtils.setField(command, "age", 39);
         ReflectionTestUtils.setField(command, "income", 201000);
         ReflectionTestUtils.setField(command, "house", house);
         ReflectionTestUtils.setField(command, "dependents", 2);
-        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED);
+        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED.name());
         ReflectionTestUtils.setField(command, "vehicle", vehicle);
 
 
@@ -143,13 +143,13 @@ class RiskScoreServiceTest {
     void testInputExample() {
         Integer[] risks = {0, 1, 0};
         Vehicle vehicle = new Vehicle(2018);
-        House house = new House(OwnershipStatus.OWNED);
+        House house = new House(OwnershipStatus.OWNED.name());
 
         ReflectionTestUtils.setField(command, "age", 35);
         ReflectionTestUtils.setField(command, "dependents", 2);
         ReflectionTestUtils.setField(command, "house", house);
         ReflectionTestUtils.setField(command, "income", 0);
-        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED);
+        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED.name());
         ReflectionTestUtils.setField(command, "riskQuestions", risks);
         ReflectionTestUtils.setField(command, "vehicle", vehicle);
 

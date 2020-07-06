@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.useorigin.insurance.api.risk.domain.House;
-import com.useorigin.insurance.api.risk.domain.MaritalStatus;
 import com.useorigin.insurance.api.risk.domain.Vehicle;
 
 import javax.validation.constraints.Min;
@@ -25,17 +24,15 @@ public class RiskProfileCreationCommand {
 
     @Min(0)
     private final Integer income;
-
-    @JsonProperty(value = "marital_status")
-    @NotNull
-    private final String maritalStatus;
-
     @NotNull
     @JsonProperty(value = "risk_questions")
     @Size(min = 3, max = 3)
     @RiskQuestionValid
     private final Integer[] riskQuestions;
     private final Vehicle vehicle;
+    @JsonProperty(value = "marital_status")
+    @NotNull
+    private String maritalStatus;
 
     public RiskProfileCreationCommand(Integer age, Integer dependents, House house, Integer income, String maritalStatus, Integer[] riskQuestions, Vehicle vehicle) {
         this.age = age;
@@ -61,6 +58,10 @@ public class RiskProfileCreationCommand {
         return dependents;
     }
 
+    public boolean hasDependents() {
+        return dependents > 0;
+    }
+
     public House getHouse() {
         return house;
     }
@@ -70,7 +71,7 @@ public class RiskProfileCreationCommand {
     }
 
     public String getMaritalStatus() {
-        return maritalStatus;
+        return maritalStatus.toUpperCase();
     }
 
     public Integer[] getRiskQuestions() {

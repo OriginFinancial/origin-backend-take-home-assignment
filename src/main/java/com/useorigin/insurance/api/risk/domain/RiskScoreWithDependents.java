@@ -13,7 +13,7 @@ public class RiskScoreWithDependents extends RiskDecorator {
 
     @Override
     public RiskScore createRiskScore(RiskProfileCreationCommand command) {
-        if (command.getDependents() > 0)
+        if (command.hasDependents())
             return updateRiskScore(risk.createRiskScore(command));
         return risk.createRiskScore(command);
     }

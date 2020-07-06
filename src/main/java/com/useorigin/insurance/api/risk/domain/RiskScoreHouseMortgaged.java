@@ -15,7 +15,7 @@ public class RiskScoreHouseMortgaged extends RiskDecorator {
     @Override
     public RiskScore createRiskScore(RiskProfileCreationCommand command) {
         if (command.getHouse() != null)
-            if (command.getHouse().getOwnershipStatus().equals(OwnershipStatus.MORTGAGED))
+            if (OwnershipStatus.valueOf(command.getHouse().getOwnershipStatus()).equals(OwnershipStatus.MORTGAGED))
                 return updateRiskScore(risk.createRiskScore(command));
 
         return risk.createRiskScore(command);

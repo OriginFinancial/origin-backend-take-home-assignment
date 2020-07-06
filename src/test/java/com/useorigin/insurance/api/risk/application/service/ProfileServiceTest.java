@@ -23,13 +23,13 @@ class ProfileServiceTest {
 
         Integer[] risks = {1, 1, 1};
         Vehicle vehicle = new Vehicle(2019);
-        House house = new House(OwnershipStatus.OWNED);
+        House house = new House(OwnershipStatus.OWNED.name());
 
         command = new RiskProfileCreationCommand.Builder()
                 .atAge(100)
                 .withDependents(10)
                 .withIncome(100000)
-                .withMaritalStatus(MaritalStatus.MARRIED)
+                .withMaritalStatus(MaritalStatus.MARRIED.name())
                 .withRisks(risks)
                 .withHouse(house)
                 .withVehicle(vehicle)
@@ -77,13 +77,13 @@ class ProfileServiceTest {
     void testInputExample() {
         Integer[] risks = {0, 1, 0};
         Vehicle vehicle = new Vehicle(2018);
-        House house = new House(OwnershipStatus.OWNED);
+        House house = new House(OwnershipStatus.OWNED.name());
 
         ReflectionTestUtils.setField(command, "age", 35);
         ReflectionTestUtils.setField(command, "dependents", 2);
         ReflectionTestUtils.setField(command, "house", house);
         ReflectionTestUtils.setField(command, "income", 0);
-        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED);
+        ReflectionTestUtils.setField(command, "maritalStatus", MaritalStatus.MARRIED.name());
         ReflectionTestUtils.setField(command, "riskQuestions", risks);
         ReflectionTestUtils.setField(command, "vehicle", vehicle);
 

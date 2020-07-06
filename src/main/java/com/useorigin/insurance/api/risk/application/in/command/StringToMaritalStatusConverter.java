@@ -7,6 +7,6 @@ public class StringToMaritalStatusConverter implements Converter<String, Marital
 
     @Override
     public MaritalStatus convert(String source) {
-        return MaritalStatus.valueOf(source);
+        return MaritalStatus.valueOf(source.toUpperCase());
     }
 }

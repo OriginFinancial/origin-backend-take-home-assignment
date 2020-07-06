@@ -15,7 +15,7 @@ public class RiskScoreMarried extends RiskDecorator {
 
     @Override
     public RiskScore createRiskScore(RiskProfileCreationCommand command) {
-        if (command.getMaritalStatus().equals(MaritalStatus.MARRIED))
+        if (MaritalStatus.valueOf(command.getMaritalStatus()).equals(MaritalStatus.MARRIED))
             return updateRiskScore(risk.createRiskScore(command));
         return risk.createRiskScore(command);
     }

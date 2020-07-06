@@ -50,7 +50,7 @@ public class RiskControllerTest {
                 .atAge(100)
                 .withDependents(10)
                 .withIncome(100000)
-                .withMaritalStatus(MaritalStatus.MARRIED)
+                .withMaritalStatus(MaritalStatus.MARRIED.name())
                 .withRisks(risks)
                 .build();
 
