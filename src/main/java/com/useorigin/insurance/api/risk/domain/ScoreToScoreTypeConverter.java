@@ -11,7 +11,7 @@ public class ScoreToScoreTypeConverter implements Converter<Integer, ScoreType> 
         if (source <= 0)
             return ScoreType.ECONOMIC;
 
-        if (source == 1 || source == 2)
+        if (source <= 2)
             return ScoreType.REGULAR;
 
         return ScoreType.RESPONSIBLE;
