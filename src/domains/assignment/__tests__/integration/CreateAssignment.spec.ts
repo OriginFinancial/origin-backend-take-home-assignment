@@ -2,7 +2,7 @@ import app from '@shared/infra/http/app';
 import request from 'supertest';
 
 describe('Create Assignment - integration tests', () => {
-  it('should NOT be able to create an assigment with invalid request params', async () => {
+  it('should NOT be able to create an assignment with invalid request params', async () => {
     const invalidRequest = [
       {},
       {
@@ -196,7 +196,7 @@ describe('Create Assignment - integration tests', () => {
     expect(getFalsyErros).toBe(undefined);
   });
 
-  it('should be able to create an assigment', async () => {
+  it('should be able to create an assignment', async () => {
     const { status, body } = await request(app)
       .post('/assignment')
       .set('Content-Type', 'application/json')
