@@ -193,7 +193,7 @@ describe('Create Assignment - integration tests', () => {
       resp => resp.error_validation === false,
     );
 
-    expect(getFalsyErros).toBe(undefined);
+    expect(getFalsyErros).toBeUndefined();
   });
 
   it('should be able to create an assignment', async () => {
@@ -216,9 +216,13 @@ describe('Create Assignment - integration tests', () => {
       });
 
     expect(status).toBe(200);
+    expect(body.auto).not.toBeUndefined();
     expect(body.auto).not.toBe('ineligible');
+    expect(body.disability).not.toBeUndefined();
     expect(body.disability).not.toBe('ineligible');
+    expect(body.home).not.toBeUndefined();
     expect(body.home).not.toBe('ineligible');
+    expect(body.life).not.toBeUndefined();
     expect(body.life).not.toBe('ineligible');
   });
 });

@@ -82,6 +82,7 @@ describe('Create Assignment Service - unit tests', () => {
       },
     });
 
+    expect(assignment.auto).not.toBeUndefined();
     expect(assignment.auto).not.toBe('ineligible');
   });
 
@@ -94,6 +95,7 @@ describe('Create Assignment Service - unit tests', () => {
       risk_questions: [1, 1, 1],
     });
 
+    expect(assignment.disability).not.toBeUndefined();
     expect(assignment.disability).not.toBe('ineligible');
   });
 
@@ -109,6 +111,7 @@ describe('Create Assignment Service - unit tests', () => {
       },
     });
 
+    expect(assignment.home).not.toBeUndefined();
     expect(assignment.home).not.toBe('ineligible');
   });
 
@@ -121,6 +124,7 @@ describe('Create Assignment Service - unit tests', () => {
       risk_questions: [1, 1, 1],
     });
 
+    expect(assignment.life).not.toBeUndefined();
     expect(assignment.life).not.toBe('ineligible');
   });
 });
