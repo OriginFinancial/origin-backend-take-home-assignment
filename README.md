@@ -77,9 +77,9 @@ Be aware that Origin will mainly take into consideration the following evaluatio
 * How good your automated tests are (qualitative over quantitative).
 
 Other important notes:
-* Develop a flexible recommendation engine, it will be essential to the take-home interview
-* Add to README file (1) what were the main technical decisions you made; (2) relevant comments about your project; (3) instructions to run the code 
-* You must use English in your code and also in your docs, including the README file
+* Develop a flexible recommendation engine
+* Add to README file (1) instructions to run the code (2) what were the main technical decisions you made; (3) relevant comments about your project 
+* You must use English in your code and also in your docs
 
 This assignment should be doable in less than one day. We expect you to learn fast, **communicate with us**, and make decisions regarding its implementation & scope to achieve the expected results on time.
 
