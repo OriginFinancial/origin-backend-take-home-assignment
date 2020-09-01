@@ -69,8 +69,21 @@ Considering the data provided above, the application should return the following
 ```
 
 ## Criteria
-You may use any language and framework, provided that you build a solid system with an emphasis on code quality, simplicity, readability, maintainability, and reliability; particularly with regards to architecture and testing. We'd prefer it if you used Python, but it's just that – a preference.
+You may use any language and framework provided that you build a solid system with an emphasis on code quality, simplicity, readability, maintainability, and reliability, particularly regarding architecture and testing. We'd prefer it if you used Python, but it's just that – a preference.
+
+Be aware that Origin will mainly take into consideration the following evaluation criteria:
+* How clean and organized your code is;
+* If you implemented the business rules correctly;
+* How good your automated tests are (qualitative over quantitative).
+
+Other important notes:
+* Develop a flexible recommendation engine, it will be essential to the take-home interview
+* Add to README file (1) what were the main technical decisions you made; (2) relevant comments about your project; (3) instructions to run the code 
+* You must use English in your code and also in your docs, including the README file
 
 This assignment should be doable in less than one day. We expect you to learn fast, **communicate with us**, and make decisions regarding its implementation & scope to achieve the expected results on time.
 
-It is not necessary to build the screens a user would interact with, however, as the API is intended to power a user-facing application, we expect the implementation to be as close as possible to what would be necessary in real-life. Consider another developer would get your project/repository to evolve and implement new features from exactly where you stopped.
+It is not necessary to build the screens a user would interact with, however, as the API is intended to power a user-facing application, we expect the implementation to be as close as possible to what would be necessary in real-life. Consider another developer would get your project/repository to evolve and implement new features from exactly where you stopped. 
+
+
+
