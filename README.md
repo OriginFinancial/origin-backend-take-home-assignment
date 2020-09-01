@@ -77,13 +77,12 @@ Be aware that Origin will mainly take into consideration the following evaluatio
 * How good your automated tests are (qualitative over quantitative).
 
 Other important notes:
-* Develop a flexible recommendation engine
-* Add to README file (1) instructions to run the code (2) what were the main technical decisions you made; (3) relevant comments about your project 
+* Develop a extensible recommendation engine
+* Add to the README file: (1) instructions to run the code; (2) what were the main technical decisions you made; (3) relevant comments about your project 
 * You must use English in your code and also in your docs
 
 This assignment should be doable in less than one day. We expect you to learn fast, **communicate with us**, and make decisions regarding its implementation & scope to achieve the expected results on time.
 
 It is not necessary to build the screens a user would interact with, however, as the API is intended to power a user-facing application, we expect the implementation to be as close as possible to what would be necessary in real-life. Consider another developer would get your project/repository to evolve and implement new features from exactly where you stopped. 
-
 
 
