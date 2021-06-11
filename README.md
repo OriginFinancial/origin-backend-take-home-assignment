@@ -77,7 +77,7 @@ Be aware that Origin will mainly take into consideration the following evaluatio
 * How good your automated tests are (qualitative over quantitative).
 
 Other important notes:
-* Develop a extensible recommendation engine
+* Develop a extensible score calculation engine
 * Add to the README file: (1) instructions to run the code; (2) what were the main technical decisions you made; (3) relevant comments about your project 
 * You must use English in your code and also in your docs
 
