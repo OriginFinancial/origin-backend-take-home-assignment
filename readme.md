@@ -70,7 +70,7 @@ For instance, the ***REST API*** layer should not know if the communication with
 happens via queues, topics or a message bus. 
 
 This client could also implement a retry strategy for errors, such as, non-deterministic network errors 
-that might be hard to troubleshoot and/or fix.
+that might be hard to troubleshoot.
 
 ## Message Handler
 
@@ -86,17 +86,17 @@ The Message Handler uses it to locate the service that should handle the message
 
 ## Risk Calculation Engine
 
-The Risk Engine Calculation is responsible for the actual calculation of the risk score.
+The ***Risk Calculation Engine*** is responsible for the actual calculation of the risk score.
 
-It now consists of the ***Risk Calculation Service*** and one domain entity (***User***) and a set of ***Visitors***.
+It now consists of the ***Risk Calculation Service***, one domain entity (***User***) and a set of ***Visitors***.
 
 The Visitor design pattern fits this scenario well, because it allows us to add, modify and remove rules 
 of the risk calculation business logic without making modifications to the clients of the ***Risk Calculation Service*** 
 (see Class and Sequence diagrams bellow).
 
 Since the final score is calculated based on points given to the different insurance types (auto,
- home, life, disability), each Visitor updates the insurance points based on its rules. Finally,
-our User domain entity calculates the final score based on the points. 
+ home, life, disability), each Visitor updates the insurance points of the User entity based on the Visitor's rules. Finally,
+our User domain entity calculates the final score based on the insurance points. 
 
 The ***User*** entity can be easily stored in a database for future reference and audit trail.
 
@@ -113,9 +113,12 @@ The ***User*** entity can be easily stored in a database for future reference an
 
 ## Testing
 
-TDD was used throughout the development of this project. There are two types of tests:
+TDD was used throughout the development of this project. There are three types of tests:
 
-Unit tests under the "test" folder and E2E tests under the "e2e_test" folder.
+Unit tests under the "test" folder, integration tests under the "integration_test" folder
+ and E2E tests under the "e2e_test" folder.
+ 
+The integration tests exercise features by letting components communicate with their dependencies (no mocks, fakes or stubs). 
 
 In a real world scenario, this project would greatly benefit from BDD to test the Risk Engine's
 business rules. 
@@ -139,13 +142,15 @@ At the moment the application is a monolith, however, project can be easily
 split into independent deployables for improved reliability and high avaialability:
 
 * The REST API can be deployed to its own server. It could be made scalable and highly available 
-when running on EC2s or as a AWS API Gateway + Serverless solution, for instance.
-* The Risk Calculation Engine could also run in EC2s, Docker containers or Lambdas. 
-* Communication between the REST API layer and the Risk Calculation Engine could happen via 
-a service, such as, SQS.
+when running on EC2s, docker containers or as a AWS API Gateway + Serverless solution, for instance.
 
-This would decouple the Risk Engine Calculation from the REST API layer. Failure in the REST API layer would not
-make the Risk Calculation Engine unavailable and vice-versa.
+* The Risk Calculation Engine could also run in EC2s, Docker containers or Lambdas. 
+
+* Communication between the ***REST API layer*** and the ***Risk Calculation Engine*** could happen via 
+a messaging service, such as, ***SQS***.
+
+This would decouple the ***Risk Calculation Engine*** from the ***REST API layer***. Failure in the ***REST API layer*** would not
+make the ***Risk Calculation Engine*** unavailable and vice-versa.
 
 ##  Error Handling And Logging
 
