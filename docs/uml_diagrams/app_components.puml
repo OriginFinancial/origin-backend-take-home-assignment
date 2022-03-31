@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+component "REST API"
+component "Risk Engine Client"
+component MessageHandler
+component "Risk Engine"
+
+[REST API] ..> [Risk Engine Client]
+[Risk Engine Client] ..> MessageHandler
+[MessageHandler] ..> [Risk Engine]
+
+
+@enduml

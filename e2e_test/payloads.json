@@ -1,0 +1,112 @@
+[
+  {
+    "payload" : {"age": 35, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 0, "marital_status": "married", "risk_questions": [0, 1, 0],"vehicle": {"year": 2018}},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "married", "risk_questions": [0, 1, 0]},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 2, "income": 100000, "marital_status": "married", "risk_questions": [0, 1, 0],"vehicle": {"year": 2018}},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 61, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "married", "risk_questions": [0, 1, 0],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "regular", "disability": "ineligible", "home": "regular", "life": "ineligible"}
+  },
+  {
+    "payload" : {"age": 61, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "married", "risk_questions": [1, 1, 0],"vehicle": {"year": 2020}},
+    "expected_result" : {"auto": "responsible", "disability": "ineligible", "home": "regular", "life": "ineligible"}
+  },
+  {
+    "payload" : {"age": 61, "dependents": 2, "house": {"ownership_status": "mortgaged"}, "income": 250000, "marital_status": "married", "risk_questions": [1, 1, 0],"vehicle": {"year": 2015}},
+    "expected_result" : {"auto": "regular", "disability": "ineligible", "home": "regular", "life": "ineligible"}
+  },
+  {
+    "payload" : {"age": 60, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "single", "risk_questions": [0, 0, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "regular", "home": "economic", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 60, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "married", "risk_questions": [0, 0, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "economic", "home": "economic", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 60, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "married", "risk_questions": [0, 1, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "regular", "disability": "regular", "home": "regular", "life": "responsible"}
+  },
+  {
+    "payload" : {"age": 60, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "married", "risk_questions": [1, 1, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "regular", "disability": "regular", "home": "regular", "life": "responsible"}
+  },
+  {
+    "payload" : {"age": 60, "dependents": 2, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "married", "risk_questions": [1, 1, 1],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "responsible", "disability": "responsible", "home": "responsible", "life": "responsible"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 0, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "single", "risk_questions": [0, 0, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "economic", "home": "economic", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 0, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "single", "risk_questions": [0, 0, 0],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "economic", "disability": "economic", "home": "economic", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 0, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "single", "risk_questions": [0, 1, 0],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "regular", "disability": "economic", "home": "economic", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 0, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "single", "risk_questions": [1, 1, 1],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "responsible", "disability": "regular", "home": "regular", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 29, "dependents": 0, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "single", "risk_questions": [0, 0, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "economic", "home": "economic", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 29, "dependents": 1, "house": {"ownership_status": "owned"}, "income": 100000, "marital_status": "single", "risk_questions": [0, 0, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "economic", "home": "economic", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 29, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 100000, "marital_status": "single", "risk_questions": [0, 0, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "economic", "home": "economic", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 29, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 100000, "marital_status": "married", "risk_questions": [1, 0, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "economic", "home": "economic", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 29, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 100000, "marital_status": "married", "risk_questions": [1, 1, 0],"vehicle": {"year": 2010}},
+    "expected_result" : {"auto": "economic", "disability": "regular", "home": "regular", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 29, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 100000, "marital_status": "married", "risk_questions": [1, 1, 1],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "regular", "disability": "regular", "home": "regular", "life": "responsible"}
+  },
+  {
+    "payload" : {"age": 61, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 100000, "marital_status": "married", "risk_questions": [1, 1, 1],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "responsible", "disability": "ineligible", "home": "responsible", "life": "ineligible"}
+  },
+  {
+    "payload" : {"age": 25, "dependents": 1, "income": 100000, "marital_status": "married", "risk_questions": [0, 0, 0],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 0, "house": {"ownership_status": "mortgaged"}, "income": 0, "marital_status": "married", "risk_questions": [0, 0, 0],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "economic"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 0, "marital_status": "married", "risk_questions": [0, 0, 0],"vehicle": {"year": 2019}},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 100000, "marital_status": "married", "risk_questions": [0, 0, 0]},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "regular"}
+  },
+  {
+    "payload" : {"age": 35, "dependents": 1, "house": {"ownership_status": "mortgaged"}, "income": 200001, "marital_status": "married", "risk_questions": [0, 0, 0]},
+    "expected_result" : {"auto": "ineligible", "disability": "ineligible", "home": "ineligible", "life": "economic"}
+  }
+]
+
+
