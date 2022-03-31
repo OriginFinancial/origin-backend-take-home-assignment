@@ -3,7 +3,7 @@
 The Risk Calculation Engine calculates risk scores based on user personal data. It consists of a REST API, Risk Calculation Engine
 Client, a Message Handler and the Risk Engine Calculation.
 
-##How to run the application
+## How to run the application
 
 1) Clone the repo https://github.com/OriginFinancial/origin-backend-take-home-assignment.
 2) cd into the repo root directory.
@@ -11,7 +11,7 @@ Client, a Message Handler and the Risk Engine Calculation.
 4) Make POST requests to http://127.0.0.1:8000/riskapi/v1/users/risk_score. See the section "The REST API" of this document for 
 information about the payload for the POST request.
 
-##How to run tests
+## How to run tests
 
 ### All Tests
 
