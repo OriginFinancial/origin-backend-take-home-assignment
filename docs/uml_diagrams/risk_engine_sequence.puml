@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+WebClient -> "Risk API": POST (user_data)
+
+"Risk API" -> "Risk API": add_message_type(user_data)
+note left
+    Risk Controller adds
+    a "message type" field to the
+    user_data payload.
+end note
+
+"Risk API" -> "Risk Engine Client": process(user_data)
+
+"Risk Engine Client" -> MessageHandler : handle(message)
+
+MessageHandler -> ServiceLocator : get(message.message_type)
+
+MessageHandler -> RiskCalculationService : process(message)
+
+loop "all pertinent visitors"
+    RiskCalculationService -> User : accept(visitor)
+    User -> Visitor : visit(User)
+    Visitor -> User : update_insurance_points(amount, insurance)
+end
+
+RiskCalculationService -> User : calculate_score()
+
+RiskCalculationService <-- User : final_score
+
+MessageHandler <-- RiskCalculationService : final_score
+
+"Risk Engine Client" <-- MessageHandler : final_score
+
+WebClient <-- "Risk Engine Client" : final_score
+
+@enduml

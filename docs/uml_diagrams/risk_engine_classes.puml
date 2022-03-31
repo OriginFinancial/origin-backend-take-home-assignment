@@ -1,0 +1,64 @@
+@startuml
+
+class RiskEngineClient {
+    process(message) : risk_engine_response
+}
+
+class MessageHandler {
+    handle(message) : message_response
+}
+
+RiskEngineClient ..> MessageHandler
+
+class ServiceLocator {
+    get (service_name) : Service
+}
+
+abstract Service
+
+MessageHandler ..> ServiceLocator
+MessageHandler ..> Service
+
+
+class RiskCalculationService {
+    process (message) : result
+}
+
+class User {
+    accept(visitor) : void
+}
+
+RiskCalculationService -|> Service
+
+abstract class Visitor
+
+class BaseScoreVivsitor {
+    visit (user) : result
+}
+
+class IncomeVisitor {
+    visit (user) : result
+}
+
+BaseScoreVivsitor --|> Visitor
+IncomeVisitor --|> Visitor
+VehicleVisitor --|> Visitor
+HouseVisitor --|> Visitor
+AgeVisitor --|> Visitor
+MaritalStatusVisitor --|> Visitor
+DependentsVisitor --|> Visitor
+
+RiskCalculationService ..> BaseScoreVivsitor
+RiskCalculationService ..> IncomeVisitor
+RiskCalculationService ..> VehicleVisitor
+RiskCalculationService ..> IncomeVisitor
+RiskCalculationService ..> HouseVisitor
+RiskCalculationService ..> AgeVisitor
+RiskCalculationService ..> MaritalStatusVisitor
+RiskCalculationService ..> DependentsVisitor
+
+RiskCalculationService ..> User
+
+User ..> Visitor
+
+@enduml
