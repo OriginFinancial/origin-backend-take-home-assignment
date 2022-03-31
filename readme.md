@@ -3,6 +3,10 @@
 The Risk Calculation Engine calculates risk scores based on user personal data. It consists of a REST API, Risk Calculation Engine
 Client, a Message Handler and the Risk Engine Calculation.
 
+## System Requirements
+
+* Python 3.8 
+ 
 ## How to run the application
 
 1) Clone the repo https://github.com/OriginFinancial/origin-backend-take-home-assignment.
