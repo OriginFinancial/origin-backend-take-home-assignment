@@ -69,7 +69,7 @@ Considering the data provided above, the application should return the following
 ```
 
 ## Criteria
-You may use any language and framework provided that you build a solid system with an emphasis on code quality, simplicity, readability, maintainability, and reliability, particularly regarding architecture and testing. We'd prefer it if you used Python, but it's just that – a preference.
+You can choose any technology stack to implement this assignment. Using our stack is not a requirement in the selection process - we will consider exclusively that you build a solid system with an emphasis on code quality, simplicity, readability, maintainability, and reliability, particularly regarding architecture and testing to evaluate your work.
 
 Be aware that Origin will mainly take into consideration the following evaluation criteria:
 * How clean and organized your code is;
