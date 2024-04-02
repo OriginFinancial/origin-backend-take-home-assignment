@@ -27,9 +27,9 @@ POST (your path design choice)
 The signup API receives the user email and password, its flow should be **at least**:
 
 1. Check if the email is associated with some employer via the eligibility file
-    1. If it is, use employer-provided data to create the user 
+    1. If it is, use employer-provided data to create the user
     2. If not, validate if the email already exists
-2. Validate password strength 
+2. Validate password strength
     1. Minimum 8 characters, letters, symbols, and numbers
 3. Create the user on User Service
 
@@ -73,7 +73,7 @@ POST /users
   "password": "string/required"
   "country": "string/alpha-2/required",
   "access_type": "string: dtc|employer / required"
-  "full_name": "string/optional", 
+  "full_name": "string/optional",
   "employer_id": "string/optional",
   "birth_date": "date/optional",
   "salary": "decimal/optional"
@@ -87,7 +87,7 @@ GET /users?email=value
   "email": "string/required",
   "country": "string/alpha-2/required",
   "access_type": "string: dtc|employer / required",
-  "full_name": "string/optional", 
+  "full_name": "string/optional",
   "employer_id": "string/optional",
   "birth_date": "date/optional",
   "salary": "decimal/optional"
@@ -101,7 +101,7 @@ GET /users/{id}
   "email": "string/required",
   "country": "string/alpha-2/required",
   "access_type": "string: dtc|employer / required",
-  "full_name": "string/optional", 
+  "full_name": "string/optional",
   "employer_id": "string/optional",
   "birth_date": "date/optional",
   "salary": "decimal/optional"
@@ -136,3 +136,9 @@ GET /employers?name=value
 - You can have any type of persistence you want on User Management Service.
 - Eligibility files can be 50+ megabytes long, you must be able to process them on 256 MB RAM environment.
 - If you decide to have any other API on User Service or Employer Service, you must document your choice and explain why.
+
+
+### **Delivery instructions**
+
+- The test deliverable **must** be a publicly or privately forked repository, not a zip file or any other kind of deliverable.
+- If it's privately forked, please add `originengineers` user to the collaborators.
