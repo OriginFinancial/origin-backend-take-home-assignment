@@ -133,6 +133,7 @@ GET /employers?name=value
 
 ### **Non-functional requirements**
 
+- .NET + C# stack
 - You can have any type of persistence you want on User Management Service.
 - Eligibility files can be 50+ megabytes long, you must be able to process them on 256 MB RAM environment.
 - If you decide to have any other API on User Service or Employer Service, you must document your choice and explain why.
