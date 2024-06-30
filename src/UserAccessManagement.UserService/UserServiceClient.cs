@@ -49,7 +49,7 @@ public class UserServiceClient : IUserServiceClient
                 if (item.Field == "salary")
                     user = user with { Salary = (decimal?)item.Value };
                 else if (item.Field == "country")
-                    user = user with { Country = item.Value.ToString() };
+                    user = user with { Country = item.Value?.ToString() ?? "XX" };
             }
 
             _usersId[request.UserId] = user;

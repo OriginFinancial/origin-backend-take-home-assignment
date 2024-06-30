@@ -1,8 +1,26 @@
 version: '3.4'
 
 services:
+  useraccessmanagement.database:
+    image: mysql:latest
+    container_name: useraccessmanagement.database
+    environment:
+      MYSQL_ROOT_PASSWORD: "+04HaAKw92?doL0W"
+      MYSQL_DATABASE: "user_access_management"
+      MYSQL_USER: "sa"
+      MYSQL_PASSWORD: "irbW801=N3(yX&o4"
+    ports:
+      - "3306:3306"
+
   useraccessmanagement.api:
     image: ${DOCKER_REGISTRY-}useraccessmanagementapi
+    container_name: useraccessmanagement.api
     build:
       context: .
       dockerfile: src/UserAccessManagement.API/Dockerfile
+    depends_on:
+      - useraccessmanagement.database
+    ports:
+      - "80:80"
+      - "443:443"
+    

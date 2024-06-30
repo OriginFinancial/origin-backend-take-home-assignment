@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using UserAccessManagement.API.Filters;
+using UserAccessManagement.Infrastructure.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,7 @@ builder.Services.AddControllers(options =>
 {
     options.Filters.Add(typeof(ApiExceptionFilter));
 });
+builder.Services.AddDbContext<UserAccessManagementDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse")));
 
 var app = builder.Build();
 
@@ -21,6 +24,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<UserAccessManagementDbContext>();
+    db.Database.Migrate();
 }
 
 app.UseHttpsRedirection();
