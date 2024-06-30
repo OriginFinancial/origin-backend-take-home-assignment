@@ -101,7 +101,8 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                     b.HasKey("Id")
                         .HasName("eligibility_file_line_pk");
 
-                    b.HasIndex("EligibilityFileId");
+                    b.HasIndex("EligibilityFileId")
+                        .HasDatabaseName("eligibility_file_line_eligibility_file_id_idx");
 
                     b.ToTable("eligibility_file_line", (string)null);
                 });
@@ -132,13 +133,17 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("created_at");
 
+                    b.Property<long>("EligibilityFileId")
+                        .HasColumnType("bigint")
+                        .HasColumnName("eligibility_file_id");
+
                     b.Property<long>("EligibilityFileLineId")
                         .HasColumnType("bigint")
                         .HasColumnName("eligibility_file_line_id");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(255)")
                         .HasColumnName("email");
 
                     b.Property<Guid>("EmployerId")
@@ -161,35 +166,19 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                     b.HasKey("Id")
                         .HasName("employee_pk");
 
-                    b.HasIndex("EligibilityFileLineId");
+                    b.HasIndex("EligibilityFileId")
+                        .HasDatabaseName("employee_eligibility_file_id_idx");
 
-                    b.HasIndex("EmployerId");
+                    b.HasIndex("EligibilityFileLineId")
+                        .HasDatabaseName("employee_eligibility_file_line_id_idx");
+
+                    b.HasIndex("Email")
+                        .HasDatabaseName("employee_email_idx");
+
+                    b.HasIndex("EmployerId")
+                        .HasDatabaseName("employee_employer_id_idx");
 
                     b.ToTable("employee", (string)null);
-                });
-
-            modelBuilder.Entity("UserAccessManagement.Domain.Entities.Employer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("char(36)");
-
-                    b.Property<bool>("Active")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime(6)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employer");
                 });
 
             modelBuilder.Entity("UserAccessManagement.Domain.Entities.EligibilityFileLine", b =>
@@ -197,29 +186,10 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                     b.HasOne("UserAccessManagement.Domain.Entities.EligibilityFile", "EligibilityFile")
                         .WithMany()
                         .HasForeignKey("EligibilityFileId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("EligibilityFile");
-                });
-
-            modelBuilder.Entity("UserAccessManagement.Domain.Entities.Employee", b =>
-                {
-                    b.HasOne("UserAccessManagement.Domain.Entities.EligibilityFileLine", "EligibilityFileLine")
-                        .WithMany()
-                        .HasForeignKey("EligibilityFileLineId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("UserAccessManagement.Domain.Entities.Employer", "Employer")
-                        .WithMany()
-                        .HasForeignKey("EmployerId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("EligibilityFileLine");
-
-                    b.Navigation("Employer");
                 });
 #pragma warning restore 612, 618
         }

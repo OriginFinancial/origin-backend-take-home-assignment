@@ -21,9 +21,6 @@ internal class EligibilityFileLineConfiguration : IEntityTypeConfiguration<Eligi
         builder.Property(t => t.CreatedAt).HasColumnName("created_at").IsRequired();
         builder.Property(t => t.UpdatedAt).HasColumnName("updated_at");
 
-        builder.HasOne(e => e.EligibilityFile)
-               .WithMany()
-               .HasForeignKey(e => e.EligibilityFileId)
-               .OnDelete(DeleteBehavior.Restrict);
+        builder.HasIndex(t => t.EligibilityFileId).HasDatabaseName("eligibility_file_line_eligibility_file_id_idx");
     }
 }

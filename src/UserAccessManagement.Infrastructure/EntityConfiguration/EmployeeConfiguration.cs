@@ -19,20 +19,16 @@ internal class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
         builder.Property(t => t.BirthDate).HasColumnName("birth_date");
         builder.Property(t => t.Salary).HasColumnName("salary");
         builder.Property(t => t.EmployerId).HasColumnName("employer_id").IsRequired();
+        builder.Property(t => t.EligibilityFileId).HasColumnName("eligibility_file_id").IsRequired();
         builder.Property(t => t.EligibilityFileLineId).HasColumnName("eligibility_file_line_id").IsRequired();
 
         builder.Property(t => t.Active).HasColumnName("active").IsRequired().HasDefaultValue(false);
         builder.Property(t => t.CreatedAt).HasColumnName("created_at").IsRequired();
         builder.Property(t => t.UpdatedAt).HasColumnName("updated_at");
 
-        builder.HasOne(e => e.Employer)
-               .WithMany()
-               .HasForeignKey(e => e.EmployerId)
-               .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasOne(e => e.EligibilityFileLine)
-               .WithMany()
-               .HasForeignKey(e => e.EligibilityFileLineId)
-               .OnDelete(DeleteBehavior.Restrict);
+        builder.HasIndex(t => t.Email).HasDatabaseName("employee_email_idx");
+        builder.HasIndex(t => t.EmployerId).HasDatabaseName("employee_employer_id_idx");
+        builder.HasIndex(t => t.EligibilityFileId).HasDatabaseName("employee_eligibility_file_id_idx");
+        builder.HasIndex(t => t.EligibilityFileLineId).HasDatabaseName("employee_eligibility_file_line_id_idx");
     }
 }
