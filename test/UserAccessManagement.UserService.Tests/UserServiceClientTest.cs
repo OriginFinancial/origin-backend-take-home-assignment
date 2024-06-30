@@ -4,14 +4,16 @@ namespace UserAccessManagement.UserService.Tests;
 
 public class UserServiceClientTest
 {
-    private UserServiceClient _userServiceClient;
+    private IUserServiceClient _userServiceClient;
     private PostUserRequest _postUserDtcRequest;
     private PostUserRequest _postUserEmployerRequest;
 
     [SetUp]
     public void Setup()
     {
+        // In a real project I would use a mock. Using the "real" client to test the "in memory api".
         _userServiceClient = new UserServiceClient();
+
         _postUserDtcRequest = new PostUserRequest("test@dtc.com", "password", "CA", 5000, "dtc", "Full Name", default, new DateTime(2000, 1, 1));
         _postUserEmployerRequest = new PostUserRequest("test@employer.com", "password", "US", 10000, "employer", "Full Name", Guid.NewGuid(), new DateTime(2000, 1, 1));
     }

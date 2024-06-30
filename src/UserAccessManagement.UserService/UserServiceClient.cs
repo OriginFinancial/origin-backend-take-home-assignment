@@ -24,7 +24,7 @@ public class UserServiceClient : IUserServiceClient
     public async Task<UserResponse?> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
         if (_usersId.TryGetValue(id, out UserResponse? value))
-            return await Task.FromResult<UserResponse?>(value);
+            return await Task.FromResult(value);
 
         return await Task.FromResult<UserResponse?>(default);
     }
@@ -32,7 +32,7 @@ public class UserServiceClient : IUserServiceClient
     public async Task<UserResponse?> GetAsync(string email, CancellationToken cancellationToken = default)
     {
         if (_usersEmail.TryGetValue(email, out UserResponse? value))
-            return await Task.FromResult<UserResponse?>(value);
+            return await Task.FromResult(value);
 
         return await Task.FromResult<UserResponse?>(default);
     }
@@ -68,6 +68,6 @@ public class UserServiceClient : IUserServiceClient
         _usersId.Add(user.Id, user);
         _usersEmail.Add(user.Email, user);
 
-        return await Task.FromResult<UserResponse?>(user);
+        return await Task.FromResult(user);
     }
 }
