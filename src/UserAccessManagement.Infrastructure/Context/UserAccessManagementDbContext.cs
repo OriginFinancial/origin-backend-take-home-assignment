@@ -6,7 +6,7 @@ namespace UserAccessManagement.Infrastructure.Data.Context;
 public class UserAccessManagementDbContext(DbContextOptions<UserAccessManagementDbContext> options) 
     : DbContext(options)
 {
-    public DbSet<ElegibilityFile> ElegibilityFiles { get; set; }
+    public DbSet<EligibilityFile> EligibilityFiles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

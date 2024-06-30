@@ -16,11 +16,12 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "elegibility_file",
+                name: "eligibility_file",
                 columns: table => new
                 {
                     id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    url = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false),
                     employer_id = table.Column<Guid>(type: "char(36)", nullable: false),
                     status = table.Column<int>(type: "int", nullable: false),
                     active = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
@@ -29,13 +30,13 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("elegibility_file_pk", x => x.id);
+                    table.PrimaryKey("eligibility_file_pk", x => x.id);
                 })
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "elegibility_file_employer_id_idx",
-                table: "elegibility_file",
+                name: "eligibility_file_employer_id_idx",
+                table: "eligibility_file",
                 column: "employer_id");
         }
 
@@ -43,7 +44,7 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "elegibility_file");
+                name: "eligibility_file");
         }
     }
 }

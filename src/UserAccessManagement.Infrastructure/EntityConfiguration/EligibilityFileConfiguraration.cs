@@ -4,15 +4,16 @@ using UserAccessManagement.Domain.Entities;
 
 namespace UserAccessManagement.Infrastructure.Data.EntityConfiguration;
 
-internal class ElegibilityFileConfiguraration : IEntityTypeConfiguration<ElegibilityFile>
+internal class EligibilityFileConfiguraration : IEntityTypeConfiguration<EligibilityFile>
 {
-    public void Configure(EntityTypeBuilder<ElegibilityFile> builder)
+    public void Configure(EntityTypeBuilder<EligibilityFile> builder)
     {
-        builder.ToTable("elegibility_file");
+        builder.ToTable("eligibility_file");
 
-        builder.HasKey(t => t.Id).HasName("elegibility_file_pk");
+        builder.HasKey(t => t.Id).HasName("eligibility_file_pk");
         builder.Property(t => t.Id).HasColumnName("id").IsRequired();
 
+        builder.Property(t => t.Url).HasColumnName("url").HasMaxLength(500).IsRequired();
         builder.Property(t => t.EmployerId).HasColumnName("employer_id").IsRequired();
         builder.Property(t => t.Status).HasColumnName("status").IsRequired();
 
@@ -20,6 +21,6 @@ internal class ElegibilityFileConfiguraration : IEntityTypeConfiguration<Elegibi
         builder.Property(t => t.CreatedAt).HasColumnName("created_at").IsRequired();
         builder.Property(t => t.UpdatedAt).HasColumnName("updated_at");
 
-        builder.HasIndex(t => t.EmployerId).HasDatabaseName("elegibility_file_employer_id_idx");
+        builder.HasIndex(t => t.EmployerId).HasDatabaseName("eligibility_file_employer_id_idx");
     }
 }

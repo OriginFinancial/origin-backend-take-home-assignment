@@ -2,7 +2,7 @@
 
 namespace UserAccessManagement.Domain.Enums;
 
-public enum ElegibilityFileStatus
+public enum EligibilityFileStatus
 {
     [Description("Processing")]
     Processing = 1,

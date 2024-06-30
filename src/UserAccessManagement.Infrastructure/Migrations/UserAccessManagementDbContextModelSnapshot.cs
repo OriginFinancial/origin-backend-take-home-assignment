@@ -19,7 +19,7 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                 .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("UserAccessManagement.Domain.Entities.ElegibilityFile", b =>
+            modelBuilder.Entity("UserAccessManagement.Domain.Entities.EligibilityFile", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,13 +48,19 @@ namespace UserAccessManagement.Infrastructure.Data.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("updated_at");
 
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("url");
+
                     b.HasKey("Id")
-                        .HasName("elegibility_file_pk");
+                        .HasName("eligibility_file_pk");
 
                     b.HasIndex("EmployerId")
-                        .HasDatabaseName("elegibility_file_employer_id_idx");
+                        .HasDatabaseName("eligibility_file_employer_id_idx");
 
-                    b.ToTable("elegibility_file", (string)null);
+                    b.ToTable("eligibility_file", (string)null);
                 });
 #pragma warning restore 612, 618
         }
