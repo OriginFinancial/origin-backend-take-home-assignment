@@ -13,7 +13,6 @@ public sealed class AddEligibilityFileCommandHandler : ICommandHandler<AddEligib
     private readonly IEligibilityFileRepository _eligibilityFileRepository;
     private readonly IEmployerServiceClient _employerServiceClient;
 
-
     public AddEligibilityFileCommandHandler(IEligibilityFileRepository eligibilityFileRepository, IEmployerServiceClient employerServiceClient)
     {
         _eligibilityFileRepository = eligibilityFileRepository;
@@ -24,7 +23,7 @@ public sealed class AddEligibilityFileCommandHandler : ICommandHandler<AddEligib
     {
         var employer = await GetOrCreateEmployerAsync(command.EmployerName, cancellationToken);
 
-        if (employer == null)
+        if (employer is null)
         {
             return new CommandResult(false, "Failed to create or retrieve employer information.");
         }

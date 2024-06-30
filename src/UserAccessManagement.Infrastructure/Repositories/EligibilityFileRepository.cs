@@ -25,10 +25,11 @@ public sealed class EligibilityFileRepository : IEligibilityFileRepository
         return entry.Entity;
     }
 
-    public async Task<bool> AnyPendingOrProcessingAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<bool> AnyPendingOrProcessingAsync(Guid employerId, CancellationToken cancellationToken)
     {
         return await _context.EligibilityFiles
             .Where(t => t.Active)
+            .Where(t => t.EmployerId == employerId)
             .Where(t => t.Status == EligibilityFileStatus.Pending || t.Status == EligibilityFileStatus.Processing)
             .AnyAsync(cancellationToken);
     }

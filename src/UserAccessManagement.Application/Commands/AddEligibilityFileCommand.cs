@@ -7,4 +7,4 @@ public record AddEligibilityFileCommand
 (
     string File, 
     [property: JsonPropertyName("employer_name")] string EmployerName
-) : ICommand;
+) : ICommand<CommandResult>;

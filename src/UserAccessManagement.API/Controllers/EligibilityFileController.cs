@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UserAccessManagement.Application.Base;
 using UserAccessManagement.Application.Commands;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace UserAccessManagement.API.Controllers;
 
@@ -9,16 +10,23 @@ namespace UserAccessManagement.API.Controllers;
 public class EligibilityFileController : ControllerBase
 {
     private readonly ICommandHandler<AddEligibilityFileCommand, CommandResult> _addEligibilityFileCommandHandler;
+    private readonly ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult> _getLastElibilityFileByEmployerCommandHandler;
 
-    public EligibilityFileController(ICommandHandler<AddEligibilityFileCommand, CommandResult> addEligibilityFileCommandHandler)
+    public EligibilityFileController(ICommandHandler<AddEligibilityFileCommand, CommandResult> addEligibilityFileCommandHandler, ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult> getLastElibilityFileByEmployerCommandHandler)
     {
         _addEligibilityFileCommandHandler = addEligibilityFileCommandHandler;
+        _getLastElibilityFileByEmployerCommandHandler = getLastElibilityFileByEmployerCommandHandler;
     }
 
     [HttpGet]
-    public IActionResult Get()
+    public async Task<IActionResult> GetLastElibilityFileByEmployerAsync([FromQuery] string employerName, CancellationToken cancellationToken = default)
     {
-        return Ok(new { Status = "Healthy" });
+        var result = await _getLastElibilityFileByEmployerCommandHandler.HandleAsync(new GetLastElibilityFileByEmployerCommand(employerName), cancellationToken);
+
+        if (!result.Success)
+            return BadRequest(result);
+
+        return Ok(result);
     }
 
     [HttpPost]
