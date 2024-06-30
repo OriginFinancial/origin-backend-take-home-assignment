@@ -5,6 +5,10 @@ namespace UserAccessManagement.Domain.Entities;
 
 public class EligibilityFile : Entity<long>
 {
+    private EligibilityFile()
+    {
+    }
+
     public EligibilityFile(Guid employerId, string url)
     {
         Url = url;
