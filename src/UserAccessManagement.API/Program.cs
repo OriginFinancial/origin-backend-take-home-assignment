@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using MySql.Data.MySqlClient;
+using System.Data;
 using UserAccessManagement.API.Filters;
 using UserAccessManagement.Infrastructure.Data.Context;
 
@@ -16,6 +18,7 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(typeof(ApiExceptionFilter));
 });
 builder.Services.AddDbContext<UserAccessManagementDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse")));
+builder.Services.AddScoped<IDbConnection, MySqlConnection>(_ => new MySqlConnection(builder.Configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse")));
 
 var app = builder.Build();
 

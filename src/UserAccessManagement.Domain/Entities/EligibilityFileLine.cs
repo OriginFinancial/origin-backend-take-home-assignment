@@ -9,16 +9,14 @@ public class EligibilityFileLine : Entity<long>
     {
     }
 
-    public EligibilityFileLine(string content, EligibilityFileLineType lineType, long eligibilityFileId, EligibilityFile eligibilityFile)
+    public EligibilityFileLine(string content, EligibilityFileLineType lineType, long eligibilityFileId)
     {
         Content = content;
         LineType = lineType;
         EligibilityFileId = eligibilityFileId;
-        EligibilityFile = eligibilityFile;
     }
 
     public string Content { get; private set; }
     public EligibilityFileLineType LineType { get; private set; }
     public long EligibilityFileId { get; private set; }
-    public EligibilityFile EligibilityFile { get; private set; }
 }
