@@ -4,6 +4,9 @@ namespace UserAccessManagement.Domain.Enums;
 
 public enum EligibilityFileStatus
 {
+    [Description("Pending")]
+    Pending = 0,
+
     [Description("Processing")]
     Processing = 1,
 

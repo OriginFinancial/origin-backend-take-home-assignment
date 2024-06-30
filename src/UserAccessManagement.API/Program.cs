@@ -1,14 +1,18 @@
 using Microsoft.EntityFrameworkCore;
-using MySql.Data.MySqlClient;
-using System.Data;
 using UserAccessManagement.API.Filters;
+using UserAccessManagement.API.Middleware;
+using UserAccessManagement.Application.DependencyInjection;
+using UserAccessManagement.EmployerService.DependencyInjection;
 using UserAccessManagement.Infrastructure.Data.Context;
+using UserAccessManagement.Infrastructure.Data.DependencyInjection;
+using UserAccessManagement.UserService.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -17,8 +21,12 @@ builder.Services.AddControllers(options =>
 {
     options.Filters.Add(typeof(ApiExceptionFilter));
 });
-builder.Services.AddDbContext<UserAccessManagementDbContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse")));
-builder.Services.AddScoped<IDbConnection, MySqlConnection>(_ => new MySqlConnection(builder.Configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse")));
+
+builder.Services.AddDatabase(builder.Configuration);
+builder.Services.AddRepositories();
+builder.Services.AddUserServiceClient();
+builder.Services.AddEmployerServiceClient();
+builder.Services.AddCommandHandlers();
 
 var app = builder.Build();
 
@@ -36,6 +44,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<DbContextTransactionMiddleware>();
 
 app.MapControllers();
 

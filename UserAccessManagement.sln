@@ -17,21 +17,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EBC3E90B-E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A18FE169-F076-491F-9916-3ACDCB4311EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.UserService.Tests", "test\UserAccessManagement.UserService.Tests\UserAccessManagement.UserService.Tests.csproj", "{A37C3CAE-9F78-48D4-A26D-81FB4CAA53EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.UserService.Tests", "test\UserAccessManagement.UserService.Tests\UserAccessManagement.UserService.Tests.csproj", "{A37C3CAE-9F78-48D4-A26D-81FB4CAA53EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.EmployerService", "src\UserAccessManagement.EmployerService\UserAccessManagement.EmployerService.csproj", "{86AE6182-0F28-461A-9AC4-F8526E657154}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.EmployerService", "src\UserAccessManagement.EmployerService\UserAccessManagement.EmployerService.csproj", "{86AE6182-0F28-461A-9AC4-F8526E657154}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.EmployerService.Tests", "test\UserAccessManagement.EmployerService.Tests\UserAccessManagement.EmployerService.Tests.csproj", "{030F9E3A-DFE8-4CF1-97C6-9E47C4A172ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.EmployerService.Tests", "test\UserAccessManagement.EmployerService.Tests\UserAccessManagement.EmployerService.Tests.csproj", "{030F9E3A-DFE8-4CF1-97C6-9E47C4A172ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{0E01FA94-CC93-4A30-9196-ECA6C3A128A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.API", "src\UserAccessManagement.API\UserAccessManagement.API.csproj", "{F06FB95B-7FC7-4B3B-8462-4A44178F276E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.API", "src\UserAccessManagement.API\UserAccessManagement.API.csproj", "{F06FB95B-7FC7-4B3B-8462-4A44178F276E}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4D8FD89B-B61E-468D-B339-F767E1D089A1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3CB91A61-1CFF-460A-B455-9B2071190CBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.Infrastructure.Data", "src\UserAccessManagement.Infrastructure\UserAccessManagement.Infrastructure.Data.csproj", "{C970CB4B-6207-4B8D-8C2E-2069EB7E802D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.Infrastructure.Data", "src\UserAccessManagement.Infrastructure\UserAccessManagement.Infrastructure.Data.csproj", "{C970CB4B-6207-4B8D-8C2E-2069EB7E802D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{508E5F0F-D8BF-41D1-BDD3-793B587BBCE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.Application", "src\UserAccessManagement.Application\UserAccessManagement.Application.csproj", "{1B263EF8-BC06-48C0-8A22-96F059EDEF0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,10 @@ Global
 		{C970CB4B-6207-4B8D-8C2E-2069EB7E802D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C970CB4B-6207-4B8D-8C2E-2069EB7E802D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C970CB4B-6207-4B8D-8C2E-2069EB7E802D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B263EF8-BC06-48C0-8A22-96F059EDEF0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B263EF8-BC06-48C0-8A22-96F059EDEF0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B263EF8-BC06-48C0-8A22-96F059EDEF0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B263EF8-BC06-48C0-8A22-96F059EDEF0A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -88,6 +96,8 @@ Global
 		{F06FB95B-7FC7-4B3B-8462-4A44178F276E} = {0E01FA94-CC93-4A30-9196-ECA6C3A128A0}
 		{3CB91A61-1CFF-460A-B455-9B2071190CBB} = {6CD2D65D-0B07-4065-B26B-71AA99244460}
 		{C970CB4B-6207-4B8D-8C2E-2069EB7E802D} = {3CB91A61-1CFF-460A-B455-9B2071190CBB}
+		{508E5F0F-D8BF-41D1-BDD3-793B587BBCE6} = {6CD2D65D-0B07-4065-B26B-71AA99244460}
+		{1B263EF8-BC06-48C0-8A22-96F059EDEF0A} = {508E5F0F-D8BF-41D1-BDD3-793B587BBCE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81910E7B-DD79-4D2E-B2DB-BA35533BA185}

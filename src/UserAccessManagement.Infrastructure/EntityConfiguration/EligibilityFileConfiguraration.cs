@@ -16,6 +16,7 @@ internal class EligibilityFileConfiguraration : IEntityTypeConfiguration<Eligibi
         builder.Property(t => t.Url).HasColumnName("url").HasMaxLength(500).IsRequired();
         builder.Property(t => t.EmployerId).HasColumnName("employer_id").IsRequired();
         builder.Property(t => t.Status).HasColumnName("status").IsRequired();
+        builder.Property(t => t.Message).HasColumnName("message").HasMaxLength(500).IsRequired(false);
 
         builder.Property(t => t.Active).HasColumnName("active").IsRequired().HasDefaultValue(false);
         builder.Property(t => t.CreatedAt).HasColumnName("created_at").IsRequired();

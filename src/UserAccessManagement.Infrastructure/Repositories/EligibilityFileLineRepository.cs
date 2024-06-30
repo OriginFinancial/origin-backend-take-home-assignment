@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
 using UserAccessManagement.Domain.Entities;
 using UserAccessManagement.Domain.Repositories;
@@ -20,6 +22,8 @@ public sealed class EligibilityFileLineRepository : IEligibilityFileLineReposito
     public async Task<EligibilityFileLine> AddAsync(EligibilityFileLine eligibilityFileLine, CancellationToken cancellationToken = default)
     {
         var entry = await _context.EligibilityFileLines.AddAsync(eligibilityFileLine, cancellationToken);
+
+        await _context.SaveChangesAsync();
 
         return entry.Entity;
     }
@@ -48,10 +52,12 @@ public sealed class EligibilityFileLineRepository : IEligibilityFileLineReposito
 
     public async Task InactiveByEligibilityFileId(long eligibilityFileId, CancellationToken cancellationToken = default)
     {
+        var transaction = _context.Database.CurrentTransaction!.GetDbTransaction();
+
         var sql = @"
             UPDATE eligibility_file_line e SET e.`active` = 1, e.updated_at = NOW()
             WHERE e.eligibility_file_id = @EligibilityFileId";
 
-        await _dbConnection.ExecuteAsync(sql, new { EligibilityFileId = eligibilityFileId });
+        await _dbConnection.ExecuteAsync(sql, new { EligibilityFileId = eligibilityFileId }, transaction);
     }
 }

@@ -26,7 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\UserAccessManagement.Application\UserAccessManagement.Application.csproj" />
+    <ProjectReference Include="..\UserAccessManagement.EmployerService\UserAccessManagement.EmployerService.csproj" />
     <ProjectReference Include="..\UserAccessManagement.Infrastructure\UserAccessManagement.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\UserAccessManagement.UserService\UserAccessManagement.UserService.csproj" />
   </ItemGroup>
 
 </Project>
