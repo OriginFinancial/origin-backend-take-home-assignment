@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  useraccessmanagement.api:
+    image: ${DOCKER_REGISTRY-}useraccessmanagementapi
+    build:
+      context: .
+      dockerfile: src/UserAccessManagement.API/Dockerfile

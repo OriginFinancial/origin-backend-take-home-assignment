@@ -43,7 +43,7 @@ public class UserServiceClient : IUserServiceClient
         {
             foreach (var item in request.Data)
             {
-                // need to be improved. with creates a clone of record with the properties changed. Do that multiple times in a loop is not good at all. But for this mock implementation I'll keep it since it will happen only twice in this scenario.
+                // need to be improved. `with` creates a clone of record with the properties changed. Do that multiple times in a loop is not good at all. But for this mock implementation I'll keep it since it will happen only twice in this scenario.
                 // I created this record with init only properties because in the real implementation it would be crated by the data returned by the real API, and would not be changed.
 
                 if (item.Field == "salary")
