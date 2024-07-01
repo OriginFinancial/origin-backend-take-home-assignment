@@ -28,7 +28,7 @@ public sealed class EligibilityFileLineRepository : IEligibilityFileLineReposito
         return entry.Entity;
     }
 
-    public async Task<IEnumerable<EligibilityFileLine>> FindByEligibilityFileIdAsync(Guid eligibilityFileId, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<EligibilityFileLine>> FindByEligibilityFileIdAsync(long eligibilityFileId, CancellationToken cancellationToken = default)
     {
         var sql = @"
             SELECT

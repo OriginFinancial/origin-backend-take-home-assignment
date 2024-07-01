@@ -2,9 +2,9 @@
 
 namespace UserAccessManagement.Application.Models;
 
-public class ElibilityFileModel : EntityModel<long>
+public class EligibilityFileModel : EntityModel<long>
 {
-    public ElibilityFileModel(EligibilityFile eligibilityFile) : base(eligibilityFile)
+    public EligibilityFileModel(EligibilityFile eligibilityFile) : base(eligibilityFile)
     {
         Url = eligibilityFile.Url;
         EmployerId = eligibilityFile.EmployerId;

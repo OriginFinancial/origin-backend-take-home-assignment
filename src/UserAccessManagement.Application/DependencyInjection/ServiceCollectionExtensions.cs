@@ -14,7 +14,8 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<ICommandHandler<AddEligibilityFileCommand, CommandResult>, AddEligibilityFileCommandHandler>();
         services.AddTransient<ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult>, GetLastElibilityFileByEmployerCommandHandler>();
-      
+        services.AddTransient<ICommandHandler<GetLastElibilityFileReportByEmployerCommand, GetLastElibilityFileReportByEmployerCommandResult>, GetLastElibilityFileReportByEmployerCommandHandler>();
+
         return services;
     }
 

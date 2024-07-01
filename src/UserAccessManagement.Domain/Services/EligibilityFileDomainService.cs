@@ -73,7 +73,7 @@ public class EligibilityFileDomainService : IEligibilityFileDomainService
 
             var (isValid, errorMessage) = ValidateCsvLine(csvLine);
 
-            var lineContent = isValid ? csvLine.RawContent! : errorMessage!;
+            var lineContent = isValid ? csvLine.Content! : errorMessage!;
             var lineType = isValid ? EligibilityFileLineType.Valid : EligibilityFileLineType.Invalid;
 
             var line = new EligibilityFileLine(lineContent, lineType, eligibilityFile.Id);

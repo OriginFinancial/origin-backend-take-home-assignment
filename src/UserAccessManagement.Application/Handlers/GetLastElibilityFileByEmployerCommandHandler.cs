@@ -33,6 +33,6 @@ public class GetLastElibilityFileByEmployerCommandHandler : ICommandHandler<GetL
             return new GetLastElibilityFileByEmployerCommandResult(false, "Eligibility file not found.", default);
         }
 
-        return new GetLastElibilityFileByEmployerCommandResult(true, "Eligibility file retrieved successfully.", new ElibilityFileModel(eligibilityFile));
+        return new GetLastElibilityFileByEmployerCommandResult(true, "Eligibility file retrieved successfully.", new EligibilityFileModel(eligibilityFile));
     }
 }

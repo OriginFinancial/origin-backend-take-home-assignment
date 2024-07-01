@@ -30,7 +30,6 @@ public class CsvService
             try
             {
                 line = csvReader.GetRecord<EligibilityFileCsvLine>();
-                line.RawContent = csvReader.ToString();
             }
             catch (Exception ex)
             {

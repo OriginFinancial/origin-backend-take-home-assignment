@@ -20,7 +20,7 @@ public class EligibilityFileCsvLine
     public decimal? Salary { get; set; }
 
     [Ignore]
-    public string? RawContent { get; set; }
+    public string? Content => $"{Email} | {FullName} | {Country} | {BirthDate} | {Salary}";
 
     [Ignore]
     public string? ErrorMessage { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text;
 using UserAccessManagement.Application.Base;
 using UserAccessManagement.Application.Commands;
 
@@ -10,11 +11,13 @@ public class EligibilityFileController : ControllerBase
 {
     private readonly ICommandHandler<AddEligibilityFileCommand, CommandResult> _addEligibilityFileCommandHandler;
     private readonly ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult> _getLastElibilityFileByEmployerCommandHandler;
+    private readonly ICommandHandler<GetLastElibilityFileReportByEmployerCommand, GetLastElibilityFileReportByEmployerCommandResult> _getLastElibilityFileReportByEmployerCommandHandler;
 
-    public EligibilityFileController(ICommandHandler<AddEligibilityFileCommand, CommandResult> addEligibilityFileCommandHandler, ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult> getLastElibilityFileByEmployerCommandHandler)
+    public EligibilityFileController(ICommandHandler<AddEligibilityFileCommand, CommandResult> addEligibilityFileCommandHandler, ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult> getLastElibilityFileByEmployerCommandHandler, ICommandHandler<GetLastElibilityFileReportByEmployerCommand, GetLastElibilityFileReportByEmployerCommandResult> getLastElibilityFileReportByEmployerCommandHandler)
     {
         _addEligibilityFileCommandHandler = addEligibilityFileCommandHandler;
         _getLastElibilityFileByEmployerCommandHandler = getLastElibilityFileByEmployerCommandHandler;
+        _getLastElibilityFileReportByEmployerCommandHandler = getLastElibilityFileReportByEmployerCommandHandler;
     }
 
     [HttpGet]
@@ -37,5 +40,29 @@ public class EligibilityFileController : ControllerBase
             return BadRequest(result);
 
         return Ok(result);
+    }
+
+    [HttpGet("/report")]
+    public async Task<IActionResult> GetLastElibilityFileReportByEmployerAsync([FromQuery] string employerName, CancellationToken cancellationToken = default)
+    {
+        var result = await _getLastElibilityFileReportByEmployerCommandHandler.HandleAsync(new GetLastElibilityFileReportByEmployerCommand(employerName), cancellationToken);
+
+        if (!result.Success)
+            return BadRequest(result);
+
+        using var memoryStream = new MemoryStream();
+        using var streamWriter = new StreamWriter(memoryStream, Encoding.UTF8);
+
+        streamWriter.WriteLine("Content,Status");
+
+        foreach (var line in result.ElibilityFileLines)
+        {
+            streamWriter.WriteLine($"{line.Content},{line.Status}");
+        }
+
+        string csvContentType = "text/csv";
+        string csvFileName = $"{employerName}_eligibility_file_processed.csv";
+
+        return File(memoryStream.ToArray(), csvContentType, csvFileName);
     }
 }
