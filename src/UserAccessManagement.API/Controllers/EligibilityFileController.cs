@@ -60,6 +60,8 @@ public class EligibilityFileController : ControllerBase
             streamWriter.WriteLine($"{line.Content},{line.Status}");
         }
 
+        streamWriter.Flush();
+
         string csvContentType = "text/csv";
         string csvFileName = $"{employerName}_eligibility_file_processed.csv";
 

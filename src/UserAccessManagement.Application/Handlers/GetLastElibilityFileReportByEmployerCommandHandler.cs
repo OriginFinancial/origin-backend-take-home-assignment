@@ -21,6 +21,11 @@ public class GetLastElibilityFileReportByEmployerCommandHandler : ICommandHandle
 
     public async Task<GetLastElibilityFileReportByEmployerCommandResult> HandleAsync(GetLastElibilityFileReportByEmployerCommand command, CancellationToken cancellationToken = default)
     {
+        if (!command.Validate())
+        {
+            return new GetLastElibilityFileReportByEmployerCommandResult(false, command.ValidationMessages!, []);
+        }
+
         var employer = await _employerServiceClient.GetAsync(command.EmployerName, cancellationToken);
 
         if (employer is null)

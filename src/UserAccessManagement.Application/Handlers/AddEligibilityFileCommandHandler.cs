@@ -26,6 +26,11 @@ public sealed class AddEligibilityFileCommandHandler : ICommandHandler<AddEligib
 
     public async Task<CommandResult> HandleAsync(AddEligibilityFileCommand command, CancellationToken cancellationToken = default)
     {
+        if (!command.Validate())
+        {
+            return new CommandResult(false, command.ValidationMessages!);
+        }
+
         var employer = await GetOrCreateEmployerAsync(command.EmployerName, cancellationToken);
 
         if (employer is null)
