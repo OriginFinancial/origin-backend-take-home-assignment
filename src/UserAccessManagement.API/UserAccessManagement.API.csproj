@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UserAccessManagement.Application\UserAccessManagement.Application.csproj" />
-    <ProjectReference Include="..\UserAccessManagement.BackgroundTask\UserAccessManagement.BackgroundTask.csproj" />
     <ProjectReference Include="..\UserAccessManagement.EmployerService\UserAccessManagement.EmployerService.csproj" />
     <ProjectReference Include="..\UserAccessManagement.Infrastructure.Data\UserAccessManagement.Infrastructure.Data.csproj" />
     <ProjectReference Include="..\UserAccessManagement.UserService\UserAccessManagement.UserService.csproj" />

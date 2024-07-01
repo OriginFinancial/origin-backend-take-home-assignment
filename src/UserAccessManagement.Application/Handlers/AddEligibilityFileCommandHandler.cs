@@ -1,6 +1,6 @@
-﻿using UserAccessManagement.Application.Base;
+﻿using UserAccessManagement.Application.BackgraoundTasks;
+using UserAccessManagement.Application.Base;
 using UserAccessManagement.Application.Commands;
-using UserAccessManagement.BackgroundTask.Tasks;
 using UserAccessManagement.Domain.Entities;
 using UserAccessManagement.Domain.Repositories;
 using UserAccessManagement.EmployerService;

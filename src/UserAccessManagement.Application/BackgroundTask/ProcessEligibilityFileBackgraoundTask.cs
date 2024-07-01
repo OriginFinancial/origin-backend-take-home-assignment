@@ -1,7 +1,7 @@
 ﻿using Hangfire;
 using UserAccessManagement.Domain.Services.Interfaces;
 
-namespace UserAccessManagement.BackgroundTask.Tasks;
+namespace UserAccessManagement.Application.BackgraoundTasks;
 
 public sealed class ProcessEligibilityFileBackgraoundTask
 {

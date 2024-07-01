@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using UserAccessManagement.API.Filters;
 using UserAccessManagement.API.Middleware;
 using UserAccessManagement.Application.DependencyInjection;
-using UserAccessManagement.BackgroundTask.DependencyInjection;
 using UserAccessManagement.EmployerService.DependencyInjection;
 using UserAccessManagement.Infrastructure.Data.Context;
 using UserAccessManagement.Infrastructure.Data.DependencyInjection;
