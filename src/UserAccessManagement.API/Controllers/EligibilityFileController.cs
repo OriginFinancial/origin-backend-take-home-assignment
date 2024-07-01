@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UserAccessManagement.Application.Base;
 using UserAccessManagement.Application.Commands;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace UserAccessManagement.API.Controllers;
 

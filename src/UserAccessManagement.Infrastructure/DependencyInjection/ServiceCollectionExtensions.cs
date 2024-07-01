@@ -13,8 +13,10 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<UserAccessManagementDbContext>(options => options.UseMySQL(configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse")), ServiceLifetime.Scoped);
-        services.AddScoped<IDbConnection, MySqlConnection>(_ => new MySqlConnection(configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse")));
+        var connectionString = configuration.GetConnectionString("Database") ?? throw new ArgumentException("ConnectionStrings:Databse");
+
+        services.AddDbContext<UserAccessManagementDbContext>(options => options.UseMySQL(connectionString), ServiceLifetime.Scoped);
+        services.AddScoped<IDbConnection, MySqlConnection>(_ => new MySqlConnection(connectionString));
 
         return services;
     }

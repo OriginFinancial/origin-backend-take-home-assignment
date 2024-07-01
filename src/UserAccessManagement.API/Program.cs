@@ -1,7 +1,10 @@
+using Hangfire;
+using Hangfire.Dashboard;
 using Microsoft.EntityFrameworkCore;
 using UserAccessManagement.API.Filters;
 using UserAccessManagement.API.Middleware;
 using UserAccessManagement.Application.DependencyInjection;
+using UserAccessManagement.BackgroundTask.DependencyInjection;
 using UserAccessManagement.EmployerService.DependencyInjection;
 using UserAccessManagement.Infrastructure.Data.Context;
 using UserAccessManagement.Infrastructure.Data.DependencyInjection;
@@ -27,6 +30,7 @@ builder.Services.AddRepositories();
 builder.Services.AddUserServiceClient();
 builder.Services.AddEmployerServiceClient();
 builder.Services.AddCommandHandlers();
+builder.Services.AddHangfireWithRedis(builder.Configuration);
 
 var app = builder.Build();
 
@@ -46,6 +50,11 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseMiddleware<DbContextTransactionMiddleware>();
+
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{
+    IsReadOnlyFunc = (DashboardContext context) => true
+});
 
 app.MapControllers();
 

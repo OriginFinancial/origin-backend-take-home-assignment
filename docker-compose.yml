@@ -12,6 +12,13 @@ services:
     ports:
       - "3306:3306"
 
+  useraccessmanagement.redis:
+    image: redis:latest
+    container_name: useraccessmanagement.redis
+    restart: always
+    ports:
+      - "6379:6379"
+
   useraccessmanagement.api:
     image: ${DOCKER_REGISTRY-}useraccessmanagementapi
     container_name: useraccessmanagement.api
@@ -20,7 +27,7 @@ services:
       dockerfile: src/UserAccessManagement.API/Dockerfile
     depends_on:
       - useraccessmanagement.database
+      - useraccessmanagement.redis
     ports:
       - "80:80"
       - "443:443"
-    
