@@ -31,15 +31,17 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{3CB91A61-1CFF-460A-B455-9B2071190CBB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.Infrastructure.Data", "src\UserAccessManagement.Infrastructure\UserAccessManagement.Infrastructure.Data.csproj", "{C970CB4B-6207-4B8D-8C2E-2069EB7E802D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.Infrastructure.Data", "src\UserAccessManagement.Infrastructure.Data\UserAccessManagement.Infrastructure.Data.csproj", "{C970CB4B-6207-4B8D-8C2E-2069EB7E802D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{508E5F0F-D8BF-41D1-BDD3-793B587BBCE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.Application", "src\UserAccessManagement.Application\UserAccessManagement.Application.csproj", "{1B263EF8-BC06-48C0-8A22-96F059EDEF0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.Application", "src\UserAccessManagement.Application\UserAccessManagement.Application.csproj", "{1B263EF8-BC06-48C0-8A22-96F059EDEF0A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTask", "BackgroundTask", "{754E16C0-FDD5-4B93-87CD-7FB39C0237AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.BackgroundTask", "src\UserAccessManagement.BackgroundTask\UserAccessManagement.BackgroundTask.csproj", "{36AACAC0-3F0F-410C-9674-12CAF542D156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserAccessManagement.BackgroundTask", "src\UserAccessManagement.BackgroundTask\UserAccessManagement.BackgroundTask.csproj", "{36AACAC0-3F0F-410C-9674-12CAF542D156}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserAccessManagement.Infrastructure", "src\UserAccessManagement.Infrastructure\UserAccessManagement.Infrastructure.csproj", "{BE9DF437-990B-4DBE-A1A0-B9EDC024FBB8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{36AACAC0-3F0F-410C-9674-12CAF542D156}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36AACAC0-3F0F-410C-9674-12CAF542D156}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36AACAC0-3F0F-410C-9674-12CAF542D156}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9DF437-990B-4DBE-A1A0-B9EDC024FBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9DF437-990B-4DBE-A1A0-B9EDC024FBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9DF437-990B-4DBE-A1A0-B9EDC024FBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9DF437-990B-4DBE-A1A0-B9EDC024FBB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{1B263EF8-BC06-48C0-8A22-96F059EDEF0A} = {508E5F0F-D8BF-41D1-BDD3-793B587BBCE6}
 		{754E16C0-FDD5-4B93-87CD-7FB39C0237AF} = {6CD2D65D-0B07-4065-B26B-71AA99244460}
 		{36AACAC0-3F0F-410C-9674-12CAF542D156} = {754E16C0-FDD5-4B93-87CD-7FB39C0237AF}
+		{BE9DF437-990B-4DBE-A1A0-B9EDC024FBB8} = {3CB91A61-1CFF-460A-B455-9B2071190CBB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81910E7B-DD79-4D2E-B2DB-BA35533BA185}
