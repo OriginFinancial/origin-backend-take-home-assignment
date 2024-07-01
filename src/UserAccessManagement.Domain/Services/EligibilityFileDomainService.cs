@@ -81,7 +81,9 @@ public class EligibilityFileDomainService : IEligibilityFileDomainService
             await _eligibilityFileLineRepository.AddAsync(line, cancellationToken);
 
             if (isValid)
+            {
                 await CreateEmployeeAsync(csvLine, eligibilityFile, line.Id, cancellationToken);
+            }
         }
     }
 
@@ -113,5 +115,19 @@ public class EligibilityFileDomainService : IEligibilityFileDomainService
         var employee = new Employee(csvLine.Email!, csvLine.FullName, csvLine.Country!, csvLine.BirthDate, csvLine.Salary, eligibilityFile.EmployerId, eligibilityFile.Id, eligibilityFileLineId);
 
         await _employeeRepository.AddAsync(employee, cancellationToken);
+
+        await UpdateUserIfExistsAsync(employee, cancellationToken);
+    }
+
+    private async Task UpdateUserIfExistsAsync(Employee employee, CancellationToken cancellationToken)
+    {
+        var user = await _userServiceClient.GetAsync(employee.Email!, cancellationToken);
+
+        if (user is null) return;
+
+        var request = new UserService.Requests.PatchUserRequest(user.Id)
+            .Build(employee.Country, employee.Salary);
+
+        await _userServiceClient.PatchAsync(request, cancellationToken);
     }
 }
