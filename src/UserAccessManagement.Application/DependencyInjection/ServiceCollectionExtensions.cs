@@ -16,13 +16,16 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult>, GetLastElibilityFileByEmployerCommandHandler>();
         services.AddTransient<ICommandHandler<GetLastElibilityFileReportByEmployerCommand, GetLastElibilityFileReportByEmployerCommandResult>, GetLastElibilityFileReportByEmployerCommandHandler>();
 
+        services.AddTransient<ICommandHandler<SignUpCommand, SignUpCommandResult>, SignUpCommandHandler>();
+
         return services;
     }
 
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
-        services.AddTransient<CsvService>();
+        services.AddTransient<CsvService>(); 
         services.AddTransient<IEligibilityFileDomainService, EligibilityFileDomainService>();
+        services.AddTransient<ISignUpDomainService, SignUpDomainService>();
 
         return services;
     }

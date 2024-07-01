@@ -12,10 +12,12 @@ public class User : Entity<Guid>
         Country = country;
     }
 
-    public User(string email, string password, string country, Guid employerId)
+    public User(string email, string password, string country, string? fullName, DateTime? birthDate, decimal? salary) 
         : this(email, password, country)
     {
-        EmployerId = employerId;
+        FullName = fullName;
+        BirthDate = birthDate;
+        Salary = salary;
     }
 
     public string Email { get; private set; }
@@ -26,10 +28,12 @@ public class User : Entity<Guid>
     public decimal? Salary { get; private set; }
     public Guid? EmployerId { get; private set; }
 
-    public void Update(string country, decimal? salary)
+    public void SetByEmployee(Employee employee)
     {
-        Country = country;
-        Salary = salary;
-        Stamp();
+        Country = employee.Country;
+        FullName = employee.FullName;
+        BirthDate = employee.BirthDate; 
+        Salary = employee.Salary;
+        EmployerId = employee.EmployerId;
     }
 }

@@ -3,7 +3,7 @@ using UserAccessManagement.UserService.Responses;
 
 namespace UserAccessManagement.UserService;
 
-public class UserServiceClient : IUserServiceClient
+public sealed class UserServiceClient : IUserServiceClient
 {
     private readonly Dictionary<Guid, UserResponse> _usersId = [];
     private readonly Dictionary<string, UserResponse> _usersEmail = [];

@@ -4,7 +4,7 @@ namespace UserAccessManagement.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class HealthController : ControllerBase
+public sealed class HealthController : ControllerBase
 {
     [HttpGet]
     public IActionResult Get()

@@ -75,6 +75,6 @@ public sealed class AddEligibilityFileCommandHandler : ICommandHandler<AddEligib
         lastActivEligibiltyFile.Inactivate();
 
         await _eligibilityFileRepository.UpdateAsync(lastActivEligibiltyFile, cancellationToken);
-        await _employeeRepository.InactiveByEligibilityFileId(lastActivEligibiltyFile.Id);
+        await _employeeRepository.InactiveByEligibilityFileId(lastActivEligibiltyFile.Id, cancellationToken);
     }
 }

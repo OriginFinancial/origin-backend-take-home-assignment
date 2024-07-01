@@ -6,7 +6,7 @@ using UserAccessManagement.EmployerService;
 
 namespace UserAccessManagement.Application.Handlers;
 
-public class GetLastElibilityFileByEmployerCommandHandler : ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult>
+public sealed class GetLastElibilityFileByEmployerCommandHandler : ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult>
 {
     private readonly IEligibilityFileRepository _eligibilityFileRepository;
     private readonly IEmployerServiceClient _employerServiceClient;

@@ -3,7 +3,7 @@ using UserAccessManagement.EmployerService.Responses;
 
 namespace UserAccessManagement.EmployerService;
 
-public class EmployerServiceClient : IEmployerServiceClient
+public sealed class EmployerServiceClient : IEmployerServiceClient
 {
     private readonly Dictionary<Guid, EmployerResponse> _employersId = [];
     private readonly Dictionary<string, EmployerResponse> _employersName = [];

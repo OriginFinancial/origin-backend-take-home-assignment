@@ -3,7 +3,7 @@ using UserAccessManagement.Domain.Entities;
 
 namespace UserAccessManagement.Infrastructure.Data.Context;
 
-public class UserAccessManagementDbContext(DbContextOptions<UserAccessManagementDbContext> options) 
+public sealed class UserAccessManagementDbContext(DbContextOptions<UserAccessManagementDbContext> options) 
     : DbContext(options)
 {
     public DbSet<Employee> Employees { get; set; }

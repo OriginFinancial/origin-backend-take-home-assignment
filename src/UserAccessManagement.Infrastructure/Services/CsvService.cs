@@ -6,7 +6,7 @@ using UserAccessManagement.Infrastructure.Exceptions;
 
 namespace UserAccessManagement.Infrastructure.Services;
 
-public class CsvService
+public sealed class CsvService
 {
     private readonly HttpClient _httpClient;
 

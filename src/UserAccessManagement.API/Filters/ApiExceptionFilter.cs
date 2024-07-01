@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
 using UserAccessManagement.API.ActionResults;
+using UserAccessManagement.Infrastructure.Exceptions;
 
 namespace UserAccessManagement.API.Filters;
 
-public class ApiExceptionFilter : IExceptionFilter
+public sealed class ApiExceptionFilter : IExceptionFilter
 {
     private readonly IWebHostEnvironment _environment;
 
@@ -19,8 +20,10 @@ public class ApiExceptionFilter : IExceptionFilter
         if (context.ExceptionHandled)
             return;
 
+        var message = context.Exception is BusinessException ? context.Exception.Message : "An internal server error occurred.";
         var detailedMessage = _environment.IsDevelopment() ? context.Exception.Message : null;
-        var responseObject = new ErrorResult(StatusCode: HttpStatusCode.InternalServerError, Message: "An internal server error occurred.", DetailedMessage: detailedMessage);
+
+        var responseObject = new ErrorResult(HttpStatusCode.InternalServerError, message, detailedMessage);
 
         context.Result = new ObjectResult(responseObject)
         {

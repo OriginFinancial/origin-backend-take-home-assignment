@@ -9,7 +9,7 @@ using UserAccessManagement.UserService;
 
 namespace UserAccessManagement.Domain.Services;
 
-public class EligibilityFileDomainService : IEligibilityFileDomainService
+public sealed class EligibilityFileDomainService : IEligibilityFileDomainService
 {
     private readonly CsvService _csvService;
     private readonly IEmployeeRepository _employeeRepository;

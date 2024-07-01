@@ -7,7 +7,7 @@ namespace UserAccessManagement.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class EligibilityFileController : ControllerBase
+public sealed class EligibilityFileController : ControllerBase
 {
     private readonly ICommandHandler<AddEligibilityFileCommand, CommandResult> _addEligibilityFileCommandHandler;
     private readonly ICommandHandler<GetLastElibilityFileByEmployerCommand, GetLastElibilityFileByEmployerCommandResult> _getLastElibilityFileByEmployerCommandHandler;
@@ -42,7 +42,7 @@ public class EligibilityFileController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("/report")]
+    [HttpGet("report")]
     public async Task<IActionResult> GetLastElibilityFileReportByEmployerAsync([FromQuery] string employerName, CancellationToken cancellationToken = default)
     {
         var result = await _getLastElibilityFileReportByEmployerCommandHandler.HandleAsync(new GetLastElibilityFileReportByEmployerCommand(employerName), cancellationToken);

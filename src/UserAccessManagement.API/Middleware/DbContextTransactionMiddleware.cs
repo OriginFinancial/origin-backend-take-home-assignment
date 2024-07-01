@@ -4,7 +4,7 @@ using UserAccessManagement.Infrastructure.Data.Context;
 
 namespace UserAccessManagement.API.Middleware;
 
-public class DbContextTransactionMiddleware
+public sealed class DbContextTransactionMiddleware
 {
     private readonly RequestDelegate _next;
     private IDbContextTransaction? _transaction;

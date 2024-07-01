@@ -3,7 +3,7 @@ using UserAccessManagement.Domain.Services.Interfaces;
 
 namespace UserAccessManagement.BackgroundTask.Tasks;
 
-public class ProcessEligibilityFileBackgraoundTask
+public sealed class ProcessEligibilityFileBackgraoundTask
 {
     private readonly IEligibilityFileDomainService _eligibilityFileDomainService;
 

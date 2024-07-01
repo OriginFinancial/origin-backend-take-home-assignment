@@ -23,6 +23,11 @@ public abstract class Entity<T> where T : struct, IComparable, IEquatable<T>
 
     protected void Stamp() => UpdatedAt = DateTime.UtcNow;
 
+    public void SetId(T id)
+    {
+        Id = id;
+    }
+
     public void Inactivate()
     {
         Active = false;

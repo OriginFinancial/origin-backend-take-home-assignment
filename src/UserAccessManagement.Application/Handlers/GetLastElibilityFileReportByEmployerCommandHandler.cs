@@ -6,7 +6,7 @@ using UserAccessManagement.EmployerService;
 
 namespace UserAccessManagement.Application.Handlers;
 
-public class GetLastElibilityFileReportByEmployerCommandHandler : ICommandHandler<GetLastElibilityFileReportByEmployerCommand, GetLastElibilityFileReportByEmployerCommandResult>
+public sealed class GetLastElibilityFileReportByEmployerCommandHandler : ICommandHandler<GetLastElibilityFileReportByEmployerCommand, GetLastElibilityFileReportByEmployerCommandResult>
 {
     private readonly IEligibilityFileRepository _eligibilityFileRepository;
     private readonly IEligibilityFileLineRepository _eligibilityFileLineRepository;
