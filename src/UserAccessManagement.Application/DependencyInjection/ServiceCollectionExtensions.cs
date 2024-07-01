@@ -22,13 +22,13 @@ public static class ServiceCollectionExtensions
         services.AddTransient<ICommandHandler<GetLastElibilityFileReportByEmployerCommand, GetLastElibilityFileReportByEmployerCommandResult>, GetLastElibilityFileReportByEmployerCommandHandler>();
 
         services.AddTransient<ICommandHandler<SignUpCommand, SignUpCommandResult>, SignUpCommandHandler>();
-
+        services.AddTransient<ICommandHandler<ListAllUsersCommand, ListAllUsersCommandResult>, ListAllUsersCommandHandler>();
         return services;
     }
 
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
-        services.AddTransient<ICsvService>(); 
+        services.AddTransient<ICsvService, CsvService>();
         services.AddTransient<IEligibilityFileDomainService, EligibilityFileDomainService>();
         services.AddTransient<ISignUpDomainService, SignUpDomainService>();
 

@@ -21,11 +21,11 @@ public sealed class EligibilityFileController : ControllerBase
         _getLastElibilityFileReportByEmployerCommandHandler = getLastElibilityFileReportByEmployerCommandHandler;
     }
 
-    [HttpGet]
+    [HttpGet("{employerName}")]
     [ProducesResponseType(typeof(GetLastElibilityFileByEmployerCommandResult), 200)]
     [ProducesResponseType(typeof(GetLastElibilityFileByEmployerCommandResult), 400)]
     [ProducesResponseType(typeof(ErrorResult), 500)]
-    public async Task<IActionResult> GetLastElibilityFileByEmployerAsync([FromQuery] string employerName, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetLastElibilityFileByEmployerAsync([FromRoute] string employerName, CancellationToken cancellationToken = default)
     {
         var result = await _getLastElibilityFileByEmployerCommandHandler.HandleAsync(new GetLastElibilityFileByEmployerCommand(employerName), cancellationToken);
 
@@ -49,11 +49,11 @@ public sealed class EligibilityFileController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("report")]
+    [HttpGet("report/{employerName}")]
     [ProducesResponseType(typeof(GetLastElibilityFileReportByEmployerCommandResult), 200)]
     [ProducesResponseType(typeof(GetLastElibilityFileReportByEmployerCommandResult), 400)]
     [ProducesResponseType(typeof(ErrorResult), 500)]
-    public async Task<IActionResult> GetLastElibilityFileReportByEmployerAsync([FromQuery] string employerName, CancellationToken cancellationToken = default)
+    public async Task<IActionResult> GetLastElibilityFileReportByEmployerAsync([FromRoute] string employerName, CancellationToken cancellationToken = default)
     {
         var result = await _getLastElibilityFileReportByEmployerCommandHandler.HandleAsync(new GetLastElibilityFileReportByEmployerCommand(employerName), cancellationToken);
 

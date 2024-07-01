@@ -104,7 +104,12 @@ public sealed class EligibilityFileDomainService : IEligibilityFileDomainService
         if (string.IsNullOrWhiteSpace(csvLine.Country))
         {
             valid = false;
-            errorMessage += "Invalid Country;";
+            errorMessage += "Invalid Country; ";
+        }
+        else if (csvLine.Country.Length != 2)
+        {
+            valid = false;
+            errorMessage += "Invalid Country, it must have 2 characters;";
         }
 
         return (valid, errorMessage);

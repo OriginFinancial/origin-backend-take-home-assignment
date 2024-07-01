@@ -12,6 +12,12 @@ public class EntityModel<T> where T : struct, IComparable, IEquatable<T>
         UpdatedAt = entity.UpdatedAt;
     }
 
+    public EntityModel(T id, bool active)
+    {
+        Id = id;
+        Active = active;
+    }
+
     public T Id { get; private set; }
 
     public bool Active { get; private set; }

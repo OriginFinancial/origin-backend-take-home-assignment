@@ -3,5 +3,5 @@ using UserAccessManagement.Application.Models;
 
 namespace UserAccessManagement.Application.Commands;
 
-public record SignUpCommandResult(bool Success, string Message, UserModel? User)
+public record ListAllUsersCommandResult(bool Success, string Message, IEnumerable<UserModel> Users)
     : CommandResult(Success, Message);
