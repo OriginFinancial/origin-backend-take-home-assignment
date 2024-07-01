@@ -43,6 +43,7 @@ if (app.Environment.IsDevelopment())
 
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<UserAccessManagementDbContext>();
+    Thread.Sleep(3000); // Local database is starting
     db.Database.Migrate();
 }
 

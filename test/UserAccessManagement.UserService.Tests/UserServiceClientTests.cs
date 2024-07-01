@@ -2,7 +2,7 @@ using UserAccessManagement.UserService.Requests;
 
 namespace UserAccessManagement.UserService.Tests;
 
-public class UserServiceClientTest
+public class UserServiceClientTests
 {
     private IUserServiceClient _userServiceClient;
     private PostUserRequest _postUserDtcRequest;

@@ -24,7 +24,7 @@ public sealed class SignUpCommandHandler : ICommandHandler<SignUpCommand, SignUp
 
         var user = new User(command.Email, command.Password, command.Country, command.FullName, command.BirthDate, command.Salary);
 
-        user = await _signUpDomainService.SingUpAsync(user, cancellationToken);
+        user = await _signUpDomainService.SignUpAsync(user, cancellationToken);
 
         return new SignUpCommandResult(true, "User signed up successfully.", new UserModel(user));
     }

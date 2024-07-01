@@ -11,13 +11,13 @@ namespace UserAccessManagement.Domain.Services;
 
 public sealed class EligibilityFileDomainService : IEligibilityFileDomainService
 {
-    private readonly CsvService _csvService;
+    private readonly ICsvService _csvService;
     private readonly IEmployeeRepository _employeeRepository;
     private readonly IEligibilityFileRepository _eligibilityFileRepository;
     private readonly IEligibilityFileLineRepository _eligibilityFileLineRepository;
     private readonly IUserServiceClient _userServiceClient;
 
-    public EligibilityFileDomainService(CsvService csvService, IEmployeeRepository employeeRepository, IEligibilityFileRepository eligibilityFileRepository, IEligibilityFileLineRepository eligibilityFileLineRepository, IUserServiceClient userServiceClient)
+    public EligibilityFileDomainService(ICsvService csvService, IEmployeeRepository employeeRepository, IEligibilityFileRepository eligibilityFileRepository, IEligibilityFileLineRepository eligibilityFileLineRepository, IUserServiceClient userServiceClient)
     {
         _csvService = csvService;
         _employeeRepository = employeeRepository;

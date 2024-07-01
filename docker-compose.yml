@@ -26,8 +26,8 @@ services:
       context: .
       dockerfile: src/UserAccessManagement.API/Dockerfile
     depends_on:
-      - useraccessmanagement.database
       - useraccessmanagement.redis
+      - useraccessmanagement.database
     ports:
       - "80:80"
       - "443:443"

@@ -23,7 +23,7 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddDomainServices(this IServiceCollection services)
     {
-        services.AddTransient<CsvService>(); 
+        services.AddTransient<ICsvService>(); 
         services.AddTransient<IEligibilityFileDomainService, EligibilityFileDomainService>();
         services.AddTransient<ISignUpDomainService, SignUpDomainService>();
 

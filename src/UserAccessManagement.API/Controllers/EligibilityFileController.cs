@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text;
+using UserAccessManagement.API.ActionResults;
 using UserAccessManagement.Application.Base;
 using UserAccessManagement.Application.Commands;
 
@@ -21,6 +22,9 @@ public sealed class EligibilityFileController : ControllerBase
     }
 
     [HttpGet]
+    [ProducesResponseType(typeof(GetLastElibilityFileByEmployerCommandResult), 200)]
+    [ProducesResponseType(typeof(GetLastElibilityFileByEmployerCommandResult), 400)]
+    [ProducesResponseType(typeof(ErrorResult), 500)]
     public async Task<IActionResult> GetLastElibilityFileByEmployerAsync([FromQuery] string employerName, CancellationToken cancellationToken = default)
     {
         var result = await _getLastElibilityFileByEmployerCommandHandler.HandleAsync(new GetLastElibilityFileByEmployerCommand(employerName), cancellationToken);
@@ -32,6 +36,9 @@ public sealed class EligibilityFileController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(CommandResult), 200)]
+    [ProducesResponseType(typeof(CommandResult), 400)]
+    [ProducesResponseType(typeof(ErrorResult), 500)]
     public async Task<IActionResult> AddElibilityFileAsync([FromBody] AddEligibilityFileCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _addEligibilityFileCommandHandler.HandleAsync(command, cancellationToken);
@@ -43,6 +50,9 @@ public sealed class EligibilityFileController : ControllerBase
     }
 
     [HttpGet("report")]
+    [ProducesResponseType(typeof(GetLastElibilityFileReportByEmployerCommandResult), 200)]
+    [ProducesResponseType(typeof(GetLastElibilityFileReportByEmployerCommandResult), 400)]
+    [ProducesResponseType(typeof(ErrorResult), 500)]
     public async Task<IActionResult> GetLastElibilityFileReportByEmployerAsync([FromQuery] string employerName, CancellationToken cancellationToken = default)
     {
         var result = await _getLastElibilityFileReportByEmployerCommandHandler.HandleAsync(new GetLastElibilityFileReportByEmployerCommand(employerName), cancellationToken);

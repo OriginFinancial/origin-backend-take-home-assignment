@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UserAccessManagement.API.ActionResults;
 using UserAccessManagement.Application.Base;
 using UserAccessManagement.Application.Commands;
 
@@ -16,6 +17,9 @@ public sealed class SignUpController : ControllerBase
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(SignUpCommandResult), 200)]
+    [ProducesResponseType(typeof(SignUpCommandResult), 400)]
+    [ProducesResponseType(typeof(ErrorResult), 500)]
     public async Task<IActionResult> SignUpAsync([FromBody] SignUpCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _signUpCommandHandler.HandleAsync(command, cancellationToken);

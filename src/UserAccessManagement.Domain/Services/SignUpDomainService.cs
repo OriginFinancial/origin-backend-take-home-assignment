@@ -18,7 +18,7 @@ public sealed class SignUpDomainService : ISignUpDomainService
         _userServiceClient = userServiceClient;
     }
 
-    public async Task<User> SingUpAsync(User user, CancellationToken cancellationToken = default)
+    public async Task<User> SignUpAsync(User user, CancellationToken cancellationToken = default)
     {
         var employee = await _employeeRepository.GetAsync(user.Email, cancellationToken);
 
@@ -34,8 +34,16 @@ public sealed class SignUpDomainService : ISignUpDomainService
                 throw new BusinessException("Email already exists");
         }
 
-        var accessType = user.EmployerId.HasValue ? "employer" : "dtc";
-        var userRequest = new PostUserRequest(user.Email, user.Password, user.Country, user.Salary, accessType, user.FullName, user.EmployerId, user.BirthDate);
+        var userRequest = new PostUserRequest(
+            user.Email,
+            user.Password,
+            user.Country,
+            user.Salary,
+            user.EmployerId.HasValue ? "employer" : "dtc",
+            user.FullName,
+            user.EmployerId,
+            user.BirthDate
+        );
 
         var response = await _userServiceClient.PostAsync(userRequest, cancellationToken);
 
