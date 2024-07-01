@@ -22,6 +22,7 @@ public sealed class DbContextTransactionMiddleware
 
             await _next(context);
 
+            // Considering only OK in this test scenario
             if (context.Response.StatusCode != (int)HttpStatusCode.OK)
             {
                 await _transaction.RollbackAsync();

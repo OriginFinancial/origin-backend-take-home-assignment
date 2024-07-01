@@ -24,6 +24,17 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(typeof(ApiExceptionFilter));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddRepositories();
 builder.Services.AddUserServiceClient();
@@ -39,14 +50,15 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    using var scope = app.Services.CreateScope();
-    var db = scope.ServiceProvider.GetRequiredService<UserAccessManagementDbContext>();
-    Thread.Sleep(3000); // Local database is starting
-    db.Database.Migrate();
 }
 
+using var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<UserAccessManagementDbContext>();
+db.Database.Migrate();
+
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

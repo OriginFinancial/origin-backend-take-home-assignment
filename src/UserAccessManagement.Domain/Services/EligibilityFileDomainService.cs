@@ -109,7 +109,7 @@ public sealed class EligibilityFileDomainService : IEligibilityFileDomainService
         else if (csvLine.Country.Length != 2)
         {
             valid = false;
-            errorMessage += "Invalid Country, it must have 2 characters;";
+            errorMessage += "Invalid Country it must have 2 characters;";
         }
 
         return (valid, errorMessage);

@@ -34,6 +34,6 @@ internal class ListAllUsersCommandHandler : ICommandHandler<ListAllUsersCommand,
         var users = await _userServiceClient.GetAllByEmployerIdAsync(employer.Id, cancellationToken);
         var usersModel = users?.Select(t => new UserModel(t.Id, t.Email, t.Country, t.FullName, t.BirthDate, t.Salary, true));
 
-        return new ListAllUsersCommandResult(true, "Success", usersModel);
+        return new ListAllUsersCommandResult(true, "Success", usersModel ?? []);
     }
 }
