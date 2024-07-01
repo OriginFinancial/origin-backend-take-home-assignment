@@ -21,6 +21,14 @@ public class UserServiceClient : IUserServiceClient
         await Task.CompletedTask;
     }
 
+    public async Task<IEnumerable<UserResponse>> GetAllByEmployerIdAsync(Guid employerId, CancellationToken cancellationToken = default)
+    {
+        return await Task.FromResult(_usersId
+            .Where(t => t.Value.EmployerId == employerId)
+            .Select(t => t.Value)
+            .ToList());
+    }
+
     public async Task<UserResponse?> GetAsync(Guid id, CancellationToken cancellationToken = default)
     {
         if (_usersId.TryGetValue(id, out UserResponse? value))

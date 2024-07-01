@@ -8,6 +8,7 @@ public interface IUserServiceClient
     Task<UserResponse?> PostAsync(PostUserRequest request, CancellationToken cancellationToken = default);
     Task<UserResponse?> GetAsync(Guid id, CancellationToken cancellationToken = default);
     Task<UserResponse?> GetAsync(string email, CancellationToken cancellationToken = default);
+    Task<IEnumerable<UserResponse>> GetAllByEmployerIdAsync(Guid employerId, CancellationToken cancellationToken = default);
     Task<UserResponse?> PatchAsync(PatchUserRequest request, CancellationToken cancellationToken = default);
     Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 }

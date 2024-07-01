@@ -27,6 +27,30 @@ public sealed class EmployeeRepository : IEmployeeRepository
         return entry.Entity;
     }
 
+    public async Task<IEnumerable<Employee>> FindByEligibilityFileId(long eligibilityFileId, CancellationToken cancellationToken)
+    {
+        var sql = @"
+            SELECT
+	            e.id          AS Id,
+	            e.email       AS Email,
+	            e.country     AS Country,
+	            e.birth_date  AS BirthDate,
+	            e.salary      AS Salary,
+                e.employer_id AS EmployerId,
+	            e.`active`    AS `Active`,
+	            e.created_at  AS CreatedAt,
+	            e.updated_at  AS UpdatedAt
+            FROM
+	            employee e
+            WHERE 
+	            e.`active` = 1
+	            AND e.eligibility_file_id = @EligibilityFileId";
+
+        var employee = await _dbConnection.QueryAsync<Employee>(sql, new { EligibilityFileId = eligibilityFileId });
+
+        return employee;
+    }
+
     public async Task<Employee?> GetAsync(string email, CancellationToken cancellationToken = default)
     {
         var sql = @"

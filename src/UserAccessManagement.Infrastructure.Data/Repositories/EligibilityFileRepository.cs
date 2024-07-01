@@ -25,21 +25,13 @@ public sealed class EligibilityFileRepository : IEligibilityFileRepository
         return entry.Entity;
     }
 
-    public async Task<bool> AnyPendingOrProcessingAsync(Guid employerId, CancellationToken cancellationToken)
+    public async Task<bool> AnyProcessingAsync(Guid employerId, CancellationToken cancellationToken)
     {
         return await _context.EligibilityFiles
             .Where(t => t.Active)
             .Where(t => t.EmployerId == employerId)
-            .Where(t => t.Status == EligibilityFileStatus.Pending || t.Status == EligibilityFileStatus.Processing)
+            .Where(t => t.Status == EligibilityFileStatus.Processing)
             .AnyAsync(cancellationToken);
-    }
-
-    public async Task<IEnumerable<EligibilityFile>> FindPendingsAsync(CancellationToken cancellationToken = default)
-    {
-        return await _context.EligibilityFiles
-            .Where(t => t.Active)
-            .Where(t => t.Status == EligibilityFileStatus.Pending)
-            .ToListAsync(cancellationToken);
     }
 
     public async Task<EligibilityFile?> GetByEmployerIdAsync(Guid employerId, CancellationToken cancellationToken = default)
@@ -49,9 +41,18 @@ public sealed class EligibilityFileRepository : IEligibilityFileRepository
             .FirstOrDefaultAsync(t => t.EmployerId == employerId, cancellationToken);
     }
 
-    public EligibilityFile Update(EligibilityFile eligibilityFile)
+    public async Task<EligibilityFile?> GetByIdAsync(long id, CancellationToken cancellationToken)
+    {
+        return await _context.EligibilityFiles
+            .Where(t => t.Active)
+            .FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
+    }
+
+    public async Task<EligibilityFile> UpdateAsync(EligibilityFile eligibilityFile, CancellationToken cancellationToken)
     {
         _context.EligibilityFiles.Update(eligibilityFile);
+
+        await _context.SaveChangesAsync(cancellationToken);
 
         return eligibilityFile;
     }

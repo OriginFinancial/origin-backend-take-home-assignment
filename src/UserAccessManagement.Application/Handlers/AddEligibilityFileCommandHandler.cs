@@ -1,5 +1,6 @@
 ﻿using UserAccessManagement.Application.Base;
 using UserAccessManagement.Application.Commands;
+using UserAccessManagement.BackgroundTask.Tasks;
 using UserAccessManagement.Domain.Entities;
 using UserAccessManagement.Domain.Repositories;
 using UserAccessManagement.EmployerService;
@@ -10,13 +11,17 @@ namespace UserAccessManagement.Application.Handlers;
 
 public sealed class AddEligibilityFileCommandHandler : ICommandHandler<AddEligibilityFileCommand, CommandResult>
 {
+    private readonly IEmployeeRepository _employeeRepository;
     private readonly IEligibilityFileRepository _eligibilityFileRepository;
     private readonly IEmployerServiceClient _employerServiceClient;
+    private readonly ProcessEligibilityFileBackgraoundTask _processEligibilityFileBackgraoundTask;
 
-    public AddEligibilityFileCommandHandler(IEligibilityFileRepository eligibilityFileRepository, IEmployerServiceClient employerServiceClient)
+    public AddEligibilityFileCommandHandler(IEmployeeRepository employeeRepository, IEligibilityFileRepository eligibilityFileRepository, IEmployerServiceClient employerServiceClient, ProcessEligibilityFileBackgraoundTask processEligibilityFileBackgraoundTask)
     {
+        _employeeRepository = employeeRepository;
         _eligibilityFileRepository = eligibilityFileRepository;
         _employerServiceClient = employerServiceClient;
+        _processEligibilityFileBackgraoundTask = processEligibilityFileBackgraoundTask;
     }
 
     public async Task<CommandResult> HandleAsync(AddEligibilityFileCommand command, CancellationToken cancellationToken = default)
@@ -28,14 +33,18 @@ public sealed class AddEligibilityFileCommandHandler : ICommandHandler<AddEligib
             return new CommandResult(false, "Failed to create or retrieve employer information.");
         }
 
-        if (await _eligibilityFileRepository.AnyPendingOrProcessingAsync(employer.Id, cancellationToken))
+        if (await _eligibilityFileRepository.AnyProcessingAsync(employer.Id, cancellationToken))
         {
             return new CommandResult(false, "There is already a file for this employer being processed, please wait.");
         }
 
+        await InactiveLastActiveEligibilityFile(employer, cancellationToken);
+
         var eligibiltyFile = new EligibilityFile(employer!.Id, command.File);
 
         await _eligibilityFileRepository.AddAsync(eligibiltyFile, cancellationToken);
+
+        _processEligibilityFileBackgraoundTask.Enqueue(eligibiltyFile.Id, cancellationToken);
 
         return new CommandResult(true, "File saved successfully. It will be processed shortly, please wait.");
     }
@@ -50,5 +59,17 @@ public sealed class AddEligibilityFileCommandHandler : ICommandHandler<AddEligib
         }
 
         return employer;
+    }
+
+    private async Task InactiveLastActiveEligibilityFile(EmployerResponse employer, CancellationToken cancellationToken)
+    {
+        var lastActivEligibiltyFile = await _eligibilityFileRepository.GetByEmployerIdAsync(employer!.Id, cancellationToken);
+
+        if (lastActivEligibiltyFile is null) return;
+
+        lastActivEligibiltyFile.Inactivate();
+
+        await _eligibilityFileRepository.UpdateAsync(lastActivEligibiltyFile, cancellationToken);
+        await _employeeRepository.InactiveByEligibilityFileId(lastActivEligibiltyFile.Id);
     }
 }

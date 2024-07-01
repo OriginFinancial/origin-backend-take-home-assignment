@@ -14,7 +14,7 @@ internal class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
         builder.Property(t => t.Id).HasColumnName("id").IsRequired();
 
         builder.Property(t => t.Email).HasColumnName("email").IsRequired();
-        builder.Property(t => t.FullName).HasColumnName("full_name").IsRequired();
+        builder.Property(t => t.FullName).HasColumnName("full_name");
         builder.Property(t => t.Country).HasColumnName("country").IsRequired();
         builder.Property(t => t.BirthDate).HasColumnName("birth_date");
         builder.Property(t => t.Salary).HasColumnName("salary");

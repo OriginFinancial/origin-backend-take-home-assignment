@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UserAccessManagement.Infrastructure\UserAccessManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\UserAccessManagement.UserService\UserAccessManagement.UserService.csproj" />
+  </ItemGroup>
+
 </Project>

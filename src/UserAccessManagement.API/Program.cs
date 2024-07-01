@@ -30,6 +30,7 @@ builder.Services.AddRepositories();
 builder.Services.AddUserServiceClient();
 builder.Services.AddEmployerServiceClient();
 builder.Services.AddCommandHandlers();
+builder.Services.AddDomainServices();
 builder.Services.AddHangfireWithRedis(builder.Configuration);
 
 var app = builder.Build();

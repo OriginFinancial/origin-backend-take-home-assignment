@@ -3,6 +3,7 @@ using Hangfire.Redis.StackExchange;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
+using UserAccessManagement.BackgroundTask.Tasks;
 
 namespace UserAccessManagement.BackgroundTask.DependencyInjection;
 
@@ -21,6 +22,7 @@ public static class ServiceCollectionExtensions
         });
 
         services.AddHangfireServer();
+        services.AddTransient<ProcessEligibilityFileBackgraoundTask>();
 
         return services;
     }

@@ -13,7 +13,7 @@ public class EligibilityFile : Entity<long>
     {
         Url = url;
         EmployerId = employerId;
-        Status = EligibilityFileStatus.Pending;
+        Status = EligibilityFileStatus.Processing;
     }
 
     public string Url { get; private set; }
@@ -27,10 +27,10 @@ public class EligibilityFile : Entity<long>
         ChangeStatus(EligibilityFileStatus.Processed);
     }
 
-    public void SetProcessedWithErrors(string message)
+    public void SetError(string message)
     {
         Message = message;
-        ChangeStatus(EligibilityFileStatus.ProcessedWithErrors);
+        ChangeStatus(EligibilityFileStatus.Error);
     }
 
     private void ChangeStatus(EligibilityFileStatus status)

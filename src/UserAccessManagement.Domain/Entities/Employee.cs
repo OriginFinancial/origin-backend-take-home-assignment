@@ -8,7 +8,7 @@ public class Employee : Entity<long>
     {
     }
 
-    public Employee(string email, string fullName, string country, DateTime? birthDate, decimal? salary, Guid employerId, long eligibilityFileId, long eligibilityFileLineId)
+    public Employee(string email, string? fullName, string country, DateTime? birthDate, decimal? salary, Guid employerId, long eligibilityFileId, long eligibilityFileLineId)
     {
         Email = email;
         FullName = fullName;
@@ -21,7 +21,7 @@ public class Employee : Entity<long>
     }
 
     public string Email { get; private set; }
-    public string FullName { get; private set; }
+    public string? FullName { get; private set; }
     public string Country { get; private set; }
     public DateTime? BirthDate { get; private set; }
     public decimal? Salary { get; private set; }
