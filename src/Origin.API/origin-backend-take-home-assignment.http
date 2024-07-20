@@ -1,0 +1,6 @@
+@origin_backend_take_home_assignment_HostAddress = http://localhost:5006
+
+GET {{origin_backend_take_home_assignment_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
